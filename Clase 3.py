@@ -135,10 +135,85 @@ def Ejercicio7():
 
 def Ejercicio8():
     print("\n| Ejercicio 8 |")
+    year = int(input("Ingresá un año (número natural): "))
+    while year <= 0:
+        year = int(input("Por favor, ingresá un año válido: "))
+    
+    if year % 4 == 0 and year % 100 == 0 and year % 400 == 0:
+        print(f"El año {year} es bisiesto.")
+    elif year % 4 == 0 and year % 100 != 0:
+        print(f"El año {year} es bisiesto.")
+    else:
+        print(f"El año {year} no es bisiesto.")
+        
 
 def Ejercicio9():
     print("\n| Ejercicio 9 |")
+    print("Verificaremos si una fecha es válida o no.")
+    fecha_valida = True
+    anio_bisiesto = False
+    DIAS_ENERO = 31
+    DIAS_FEBRERO = 28
+    DIAS_MARZO = 31
+    DIAS_ABRIL = 30
+    DIAS_MAYO = 28
+    DIAS_JUNIO = 30
+    DIAS_JULIO = 31
+    DIAS_AGOSTO = 31
+    DIAS_SEPTIEMBRE = 30
+    DIAS_OCTUBRE = 31
+    DIAS_NOVIEMBRE = 30
+    DIAS_DICIEMBRE = 31
+    def check_cant_dias(DIAS_MES):
+        if dia > DIAS_MES: fecha_valida = False
+    def check_cant_dias_febrero_anio_bisiesto():
+        if dia > 29: fecha_valida = False
     
+    dia = int(input("Ingresá un día: "))
+    while dia <= 0:
+        dia = int(input("Por favor, ingresá un número natural: "))
+    
+    mes = int(input("Ingresá un mes: "))
+    while mes <= 0:
+        mes = int(input("Por favor, ingresá un número natural: "))
+        
+    anio = int(input("Ingresá un año: "))
+    while anio <= 0:
+        anio = int(input("Por favor, ingresá un número natural: "))
+        
+    fecha_ingresada = f"{dia}/{mes}/{anio}"
+    
+    if dia < 1 or dia > 31: fecha_valida = False
+    elif mes < 1 or mes > 12: fecha_valida = False
+    elif anio < 1: fecha_valida = False
+    else: pass
+    
+    if anio % 4 == 0 and anio % 100 == 0 and anio % 400 == 0: anio_bisiesto = True
+    elif anio % 4 == 0 and anio % 100 != 0: anio_bisiesto = True
+    else: pass
+    
+    if fecha_valida != False:
+        if mes == 1: check_cant_dias(DIAS_ENERO)
+        if mes == 2: 
+            if anio_bisiesto == False: check_cant_dias(DIAS_FEBRERO)
+            else: check_cant_dias_febrero_anio_bisiesto()
+        if mes == 3: check_cant_dias(DIAS_MARZO)
+        if mes == 4: check_cant_dias(DIAS_ABRIL)
+        if mes == 5: check_cant_dias(DIAS_MAYO)
+        if mes == 6: check_cant_dias(DIAS_JUNIO)
+        if mes == 7: check_cant_dias(DIAS_JULIO)
+        if mes == 8: check_cant_dias(DIAS_AGOSTO)
+        if mes == 9: check_cant_dias(DIAS_SEPTIEMBRE)
+        if mes == 10: check_cant_dias(DIAS_OCTUBRE)
+        if mes == 11: check_cant_dias(DIAS_NOVIEMBRE)
+        if mes == 12: check_cant_dias(DIAS_DICIEMBRE)
+        
+    if fecha_valida == True:
+        print(f"La fecha {fecha_ingresada} es válida.")
+    else: 
+        print(f"La fecha {fecha_ingresada} no es válida.")
+
+
 def Ejercicio10():
     print("\n| Ejercicio 10 |")
 
