@@ -2,32 +2,44 @@
 
 def Ejercicio1():
     print("\n| Ejercicio 1 |")
-    cant_menores_de_edad = 0
-    cant_mayores_de_edad = 0
-    suma_menores_de_edad = 0
-    suma_mayores_de_edad = 0
-    promedio_menores_de_edad = 0
-    promedio_mayores_de_edad = 0
-    edad_ingresada = int(input("Para finalizar el programa, escribir '-1'. Ingresá un número natural de la edad de una persona: "))
+    flag = True
+    edadPersona = 0
+    cantidad_menores = 0
+    cantidad_mayores = 0
+    sumaEdades_menores = 0
+    sumaEdades_mayores = 0
+    promedio_menores = 0
+    promedio_mayores = 0
     
-    while edad_ingresada < 0 or edad_ingresada > 120:
-        int(input("Por favor, ingresá una edad válida: "))
-
-    while edad_ingresada != -1:
-        if edad_ingresada < 18:
-            cant_menores_de_edad += 1
-            suma_menores_de_edad += edad_ingresada
-        elif edad_ingresada >= 18:
-            cant_mayores_de_edad += 1
-            suma_mayores_de_edad += edad_ingresada
-        edad_ingresada = int(input("Ingresá otra edad: "))
-
-    promedio_menores_de_edad = suma_menores_de_edad / cant_menores_de_edad
-    promedio_mayores_de_edad = suma_mayores_de_edad / cant_mayores_de_edad
-
-    print(f"La cantidad de personas menores de edad es de {cant_menores_de_edad} y el promedio de sus edades es de {promedio_menores_de_edad}.")
-    print(f"La cantidad de personas mayores de edad es de {cant_mayores_de_edad} y el promedio de sus edades es de {promedio_mayores_de_edad}.")
-    
+    while flag == True:
+        edadPersona = int(input("Para finalizar el programa, escribir '-1'. Ingresá la edad de una persona: "))
+        if edadPersona == -1:
+            flag = False
+        elif edadPersona < 0 or edadPersona > 100:
+            print("Ingresaste una edad inválida.")
+        else:
+            if edadPersona < 18:
+                cantidad_menores += 1
+                sumaEdades_menores += edadPersona
+                promedio_menores = sumaEdades_menores / cantidad_menores
+            elif edadPersona >= 18:
+                cantidad_mayores += 1
+                sumaEdades_mayores += edadPersona
+                promedio_mayores = sumaEdades_mayores / cantidad_mayores
+            else: print("Error desconocido.")
+            
+    print("")
+            
+    if cantidad_menores == 0:
+        print("No hay menores de edad.")
+    else:
+        print(f"Hay {cantidad_menores} menores de edad. El promedio de edad de este grupo es de {promedio_menores} años.")
+        
+    if cantidad_mayores == 0:
+        print("No hay mayores de edad.")
+    else:
+        print(f"Hay {cantidad_mayores} mayores de edad. El promedio de edad de este grupo es de {promedio_mayores} años.")
+        
 
 def Ejercicio2():
     print("\n| Ejercicio 2 |")
