@@ -153,7 +153,7 @@ def Ejercicio14():
     print(f"• {cant_billetes_cinco} de cinco")
     print(f"• {cant_billetes_uno} de uno")
 
-    
+
 ############################################################################################################
 
 xCheck = False

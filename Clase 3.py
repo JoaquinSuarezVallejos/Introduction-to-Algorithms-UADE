@@ -214,9 +214,6 @@ def Ejercicio9():
         print(f"La fecha {fecha_ingresada} no es válida.")
 
 
-def Ejercicio10():
-    print("\n| Ejercicio 10 |")
-
 ############################################################################################################
 
 xCheck = False
@@ -241,8 +238,6 @@ while xCheck == False:
         Ejercicio8()
     elif ejercicioSeleccionado == 9:
         Ejercicio9()
-    elif ejercicioSeleccionado == 10:
-        Ejercicio10()
     elif ejercicioSeleccionado == 0:
         xCheck = True
         print("Programa finalizado. ¡Hasta luego!")

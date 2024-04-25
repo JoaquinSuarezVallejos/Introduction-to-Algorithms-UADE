@@ -68,6 +68,7 @@ def Ejercicio5():
         print(contadorNums)
         contadorNums += 1
 
+
 def Ejercicio6():
     print("\n| Ejercicio 6 |")
     num_tabla_de_multiplicar = int(input("Ingresá el número de la tabla de multiplicar que querés ver (del 1 al 12): "))
@@ -76,7 +77,8 @@ def Ejercicio6():
     for num in range (1, 13):
         print(f"{num_tabla_de_multiplicar} x {num} = {num_tabla_de_multiplicar * num}")
         num += 1
-    
+
+
 ############################################################################################################
 
 xCheck = False
@@ -95,22 +97,6 @@ while xCheck == False:
         Ejercicio5()
     elif ejercicioSeleccionado == 6:
         Ejercicio6()
-    # elif ejercicioSeleccionado == 7:
-    #     Ejercicio7()
-    # elif ejercicioSeleccionado == 8:
-    #     Ejercicio8()
-    # elif ejercicioSeleccionado == 9:
-    #     Ejercicio9()
-    # elif ejercicioSeleccionado == 10:
-    #     Ejercicio10()
-    # elif ejercicioSeleccionado == 11:
-    #     Ejercicio11()
-    # elif ejercicioSeleccionado == 12:
-    #     Ejercicio12()
-    # elif ejercicioSeleccionado == 13:
-    #     Ejercicio13()
-    # elif ejercicioSeleccionado == 14:
-    #     Ejercicio14()
     elif ejercicioSeleccionado == 0:
         xCheck = True
         print("Programa finalizado. ¡Hasta luego!")

@@ -125,20 +125,6 @@ while xCheck == False:
         Ejercicio2()
     elif ejercicioSeleccionado == 3:
         Ejercicio3()
-    # elif ejercicioSeleccionado == 4:
-    #     Ejercicio4()
-    # elif ejercicioSeleccionado == 5:
-    #     Ejercicio5()
-    # elif ejercicioSeleccionado == 6:
-    #     Ejercicio6()
-    # elif ejercicioSeleccionado == 7:
-    #     Ejercicio7()
-    # elif ejercicioSeleccionado == 8:
-    #     Ejercicio8()
-    # elif ejercicioSeleccionado == 9:
-    #     Ejercicio9()
-    # elif ejercicioSeleccionado == 10:
-    #     Ejercicio10()
     elif ejercicioSeleccionado == 0:
         xCheck = True
         print("Programa finalizado. ¡Hasta luego!")

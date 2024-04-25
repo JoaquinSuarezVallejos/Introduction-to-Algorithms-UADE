@@ -95,11 +95,6 @@ def Ejercicio2():
             print("No sobró ningún ingrediente.")
         else:
             print(f"Sobrarán {cant_galletitas_chocolate} kilos de galletitas de chocolate, {cant_dulce_de_leche} kilos de dulce de leche y {cant_queso_crema} kilos de queso crema.")
-
-
-def Ejercicio3():
-    print("\nEjercicio 3:")
-    
     
     
 ############################################################################################################
@@ -112,8 +107,6 @@ while xCheck == False:
         Ejercicio1()
     elif ejercicioSeleccionado == 2:
         Ejercicio2()
-    elif ejercicioSeleccionado == 3:
-        Ejercicio3()
     elif ejercicioSeleccionado == 0:
         xCheck = True
         print("Programa finalizado. ¡Hasta luego!")
