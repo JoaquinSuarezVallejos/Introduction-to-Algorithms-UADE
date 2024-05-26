@@ -169,7 +169,7 @@ def Ejercicio8():
 xCheck = False
 
 while xCheck == False:
-    ejercicioSeleccionado = int(input("\nIngresá el número del ejercicio que querés ejecutar (del 1 al 14) o '0' para salir del programa: "))
+    ejercicioSeleccionado = int(input("\nIngresá el número del ejercicio que querés ejecutar (del 1 al 3) o '0' para salir del programa: "))
     if ejercicioSeleccionado == 1:
         Ejercicio1()
     elif ejercicioSeleccionado == 2:
