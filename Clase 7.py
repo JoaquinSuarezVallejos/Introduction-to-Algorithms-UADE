@@ -113,22 +113,23 @@ def Ejercicio6():
         return listaInvertida
     print("Lista invertida: ", revertirLista(lista))
 
-# Ejercicio 7: 
-    def Ejercicio7():
-        def informarSegundoMayor(lista):
-            if len(lista) < 2:
-                return -1
-            mayor = lista[0]
-            segundo_mayor = None
-            for i in range(len(lista)):
-                if lista[i] > mayor:
-                    segundo_mayor = mayor
-                    mayor = lista[i]
-                elif lista[i] > segundo_mayor:
-                    segundo_mayor = lista[i]
-            
-
-
+# Ejercicio 7:  informar el segundo mayor de una lista.
+def Ejercicio7():
+    def informarSegundoMayor(lista):
+        if len(lista) < 2:
+            return -1
+        mayor = lista[0]
+        segundo_mayor = None
+        for i in range(len(lista)):
+            if lista[i] > mayor:
+                segundo_mayor = mayor
+                mayor = lista[i]
+            elif lista[i] > segundo_mayor:
+                segundo_mayor = lista[i]
+        return segundo_mayor
+    lista = [1, 2, 3, 4, 5]
+    print("El segundo mayor de la lista es: ", informarSegundoMayor(lista))
+    
 ############################################################################################################
 
 xCheck = False
@@ -146,5 +147,3 @@ while xCheck == False:
         print("Programa finalizado. ¡Hasta luego!")
     else:
         print("El número ingresado no corresponde a ningún ejercicio. Por favor, ingresá un número del 1 al 14 o '0' para salir del programa: ")
-
-    
