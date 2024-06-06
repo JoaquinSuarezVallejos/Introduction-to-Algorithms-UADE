@@ -43,7 +43,6 @@ def Ejercicio2():
             print(numeros[i], end=" ")
 
 def Ejercicio3():
-    
     lista = []
     bandera = True
     while bandera:
@@ -163,21 +162,30 @@ def Ejercicio8():
 
     lista = [1, 2, 3, 4, 5, 4, 3, 2, 1]
     
-
 ############################################################################################################
 
 xCheck = False
 
 while xCheck == False:
-    ejercicioSeleccionado = int(input("\nIngresá el número del ejercicio que querés ejecutar (del 1 al 3) o '0' para salir del programa: "))
+    ejercicioSeleccionado = int(input("\nIngresá el número del ejercicio que querés ejecutar (del 1 al 8) o '0' para salir del programa: "))
     if ejercicioSeleccionado == 1:
         Ejercicio1()
     elif ejercicioSeleccionado == 2:
         Ejercicio2()
     elif ejercicioSeleccionado == 3:
         Ejercicio3()
+    elif ejercicioSeleccionado == 4:
+        Ejercicio4()
+    elif ejercicioSeleccionado == 5:
+        Ejercicio5()
+    elif ejercicioSeleccionado == 6:
+        Ejercicio6()
+    elif ejercicioSeleccionado == 7:
+        Ejercicio7()
+    elif ejercicioSeleccionado == 8:
+        Ejercicio8()
     elif ejercicioSeleccionado == 0:
         xCheck = True
         print("Programa finalizado. ¡Hasta luego!")
     else:
-        print("El número ingresado no corresponde a ningún ejercicio. Por favor, ingresá un número del 1 al 14 o '0' para salir del programa: ")
+        print("El número ingresado no corresponde a ningún ejercicio. Por favor, ingresá un número del 1 al 8 o '0' para salir del programa: ")
