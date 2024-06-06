@@ -1,6 +1,6 @@
 # Introducción a la Algoritmia - Clase 8
 
-# Búsqueda Binaria
+# BÚSQUEDA BINARIA
 
 def busquedaBinaria(lista, elemento):
     izquierda = 0
