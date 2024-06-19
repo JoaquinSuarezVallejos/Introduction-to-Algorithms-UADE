@@ -64,7 +64,11 @@ def Opcion2(eventos): # Facturación por tipo de evento, costo y cantidad de eve
 # Código principal
 flag = True
 while flag:
-    print("Hola, bienvenido/a a nuestro programa\n ¿Qué opción desea seleccionar?")
-    inp = input("")
-    if inp == 0:
+    print("Bienvenido/a al programa de gestión de tu empresa de fotografía. ¿Qué opción deseás seleccionar?")
+    print("\nOpción 1: Ver el total de facturación, costos y cantidad de eventos")
+    print("Opción 2: Ver el total de facturación por tipo de evento, costos y cantidad de eventos ordenado por facturación")
+    print("Opción 3: Ver el listado completo detallado del total facturado de cada evento")
+    print("Opción 4: Filtrar por tipo de evento")
+    opcion_elegida = input("")
+    if opcion_elegida == 0:
         flag = False
