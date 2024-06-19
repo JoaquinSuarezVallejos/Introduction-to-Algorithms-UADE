@@ -35,11 +35,11 @@
 # Se solicita el desarrollo de un programa, con un menú principal para poder acceder a las opciones detalladas. 
 # El programa solo debe terminar cuando el usuario elija la opción del menú correspondiente a SALIR.
 # Los datos serán generados por números al azar ya que la carga manual se complejiza para la ejecución. 
-# Tener en cuenta las restricciones del enunciado para determinar las cantidades correctas al realizar esta generación de datos.
+# Tener en cuenta las restricciones del enunciado para determinar las cantidades correctas al realizar esta generación de datos.z
 
 # -----------------------------------------------------------------------------------------------------------------------------------
 
-import random
+from random import randint
 
 # | FUNCIONES | 
 def Opcion1(eventos): # Facturación del mes, costos y cantidad de eventos.
@@ -58,7 +58,14 @@ def Opcion1(eventos): # Facturación del mes, costos y cantidad de eventos.
 
 
 def Opcion2(eventos): # Facturación por tipo de evento, costo y cantidad de eventos ordenado por facturación.
-    print("")
+    eventos_ordenados = sorted(eventos, key = lambda evento: evento["facturacion"], reverse = True)
+
+    for evento in eventos_ordenados:
+        print(f"Tipo de evento: {evento['tipo_evento']}")
+        print(f"Facturación: ${evento['facturacion']}")
+        print(f"Costo: ${evento['costo']}")
+        print(f"Cantidad de eventos: {evento['cantidad_eventos']}")
+        print()
 
 
 # Código principal
