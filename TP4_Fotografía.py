@@ -37,6 +37,10 @@
 # Los datos serán generados por números al azar ya que la carga manual se complejiza para la ejecución. 
 # Tener en cuenta las restricciones del enunciado para determinar las cantidades correctas al realizar esta generación de datos.
 
+# -----------------------------------------------------------------------------------------------------------------------------------
+
+import random
+
 # | FUNCIONES | 
 def Opcion1(eventos): # Facturación del mes, costos y cantidad de eventos.
     total_facturacion = 0
@@ -52,4 +56,15 @@ def Opcion1(eventos): # Facturación del mes, costos y cantidad de eventos.
     print(f"Total de costos del mes: ${total_costos}")
     print(f"Cantidad de eventos realizados: {total_eventos}")
 
+
 def Opcion2(eventos): # Facturación por tipo de evento, costo y cantidad de eventos ordenado por facturación.
+    print("")
+
+
+# Código principal
+flag = True
+while flag:
+    print("Hola, bienvenido/a a nuestro programa\n ¿Qué opción desea seleccionar?")
+    inp = input("")
+    if inp == 0:
+        flag = False
