@@ -58,24 +58,44 @@ def Opcion1(eventos): # Facturación del mes, costos y cantidad de eventos.
 
 
 def Opcion2(eventos): # Facturación por tipo de evento, costo y cantidad de eventos ordenado por facturación.
-    eventos_ordenados = sorted(eventos, key = lambda evento: evento["facturacion"], reverse = True)
+    print("")
 
-    for evento in eventos_ordenados:
-        print(f"Tipo de evento: {evento['tipo_evento']}")
-        print(f"Facturación: ${evento['facturacion']}")
-        print(f"Costo: ${evento['costo']}")
-        print(f"Cantidad de eventos: {evento['cantidad_eventos']}")
-        print()
-
+def Opcion3():
+    print("")
+    
+def Opcion4():
+    print("")
 
 # Código principal
+
+# Variables
 flag = True
+matriz_tabla_eventos = [
+    []
+]
+
+# Menú principal
+print("Bienvenido/a al programa de gestión de tu empresa de fotografía.")
+
 while flag:
-    print("Bienvenido/a al programa de gestión de tu empresa de fotografía. ¿Qué opción deseás seleccionar?")
-    print("\nOpción 1: Ver el total de facturación, costos y cantidad de eventos")
-    print("Opción 2: Ver el total de facturación por tipo de evento, costos y cantidad de eventos ordenado por facturación")
-    print("Opción 3: Ver el listado completo detallado del total facturado de cada evento")
-    print("Opción 4: Filtrar por tipo de evento")
-    opcion_elegida = input("")
-    if opcion_elegida == 0:
+    print("MENÚ PRINCIPAL")
+    print("¿Qué opción deseás seleccionar?")
+    print("\nOpción 1: Ver el total de facturación, costos y cantidad de eventos.")
+    print("Opción 2: Ver el total de facturación por tipo de evento, costos y cantidad de eventos ordenado por facturación.")
+    print("Opción 3: Ver el listado completo detallado del total facturado de cada evento.")
+    print("Opción 4: Filtrar por tipo de evento.")
+    print("Opción 5: Salir.")
+    opcion_elegida = input("Por favor, ingresá una opción del 1 al 5: ")
+    if opcion_elegida == 1:
+        Opcion1()
+    elif opcion_elegida == 2:
+        Opcion2()
+    elif opcion_elegida == 3:
+        Opcion3()
+    elif opcion_elegida == 4:
+        Opcion4()
+    elif opcion_elegida == 5:
         flag = False
+    else:
+        opcion_elegida = input("Por favor, ingresá un número válido del 1 al 5: ")
+        
