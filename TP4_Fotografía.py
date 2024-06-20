@@ -21,7 +21,7 @@
 
 # Además, se sabe que, por la capacidad de la empresa, lo máximo que pueden realizar
 # por mes son hasta 80 eventos, pero el mínimo es siempre 30. También, la cantidad de
-# fotografías mínimas por evento es de 30 y como máximo son 500. El costo de cada foto
+# fotografías mínimas por evento es de 50 y como máximo son 500. El costo de cada foto
 # sacada es de $50 la unidad, igual para todos los eventos.
 
 # La empresa tiene el detalle de todos los eventos del mes, el tipo de evento y la cantidad de fotos que se sacaron. 
@@ -39,53 +39,77 @@
 
 # -----------------------------------------------------------------------------------------------------------------------------------
 
+# | IMPORTS | 
 from random import randint
 
+
 # | FUNCIONES | 
-def Opcion1(eventos): # Facturación del mes, costos y cantidad de eventos.
-    total_facturacion = 0
-    total_costos = 0
-    total_eventos = 0
-
-    for evento in eventos:
-        total_facturacion += evento["facturacion"]
-        total_costos += evento["costo"]
-        total_eventos += 1
-
-    print(f"Total de facturación del mes: ${total_facturacion}")
-    print(f"Total de costos del mes: ${total_costos}")
-    print(f"Cantidad de eventos realizados: {total_eventos}")
-
-
-def Opcion2(eventos): # Facturación por tipo de evento, costo y cantidad de eventos ordenado por facturación.
-    print("")
+def Opcion1(): # Facturación del mes, costos y cantidad de eventos.
+    print("Soy la Opción 1.")
+    
+    # Código de la función
+    
+    volver_a_menu_principal()
+        
+def Opcion2(): # Facturación por tipo de evento, costo y cantidad de eventos ordenado por facturación.
+    print("Soy la Opción 2.")
+    
+    # Código de la función
+    
+    volver_a_menu_principal()
 
 def Opcion3():
-    print("")
+    print("Soy la Opción 3.")
+    
+    # Código de la función
+    
+    volver_a_menu_principal()
     
 def Opcion4():
-    print("")
+    print("Soy la Opción 4.")
+    
+    # Código de la función
+    
+    volver_a_menu_principal()
+    
+def volver_a_menu_principal():
+    volver_a_menu_principal = str(input("\n¿Deseás volver al menú principal? (Sí: y / No: n): "))
+    volver_a_menu_principal.lower()
+    if volver_a_menu_principal == "y" or volver_a_menu_principal == "yes": 
+        return
+    else: 
+        print("¡Gracias por utilizar el programa! ¡Hasta luego!")
+        exit()
 
-# Código principal
 
-# Variables
+# | VARIABLES | 
 flag = True
 matriz_tabla_eventos = [
-    []
+    ["CASAMIENTO", 750, 650, 600, 50000],
+    ["15 AÑOS", 850, 750, 700, 60000],
+    ["CUMPLEAÑOS", 650, 550, 550, 35000],
+    ["BAUTISMOS", 750, 650, 650, 38000],
+    ["OTROS", 1000, 900, 800, 25000]
 ]
+eventos = []
 
-# Menú principal
+
+# | MENÚ PRINCIPAL | 
 print("Bienvenido/a al programa de gestión de tu empresa de fotografía.")
 
 while flag:
-    print("MENÚ PRINCIPAL")
+    print("| MENÚ PRINCIPAL |")
     print("¿Qué opción deseás seleccionar?")
     print("\nOpción 1: Ver el total de facturación, costos y cantidad de eventos.")
     print("Opción 2: Ver el total de facturación por tipo de evento, costos y cantidad de eventos ordenado por facturación.")
     print("Opción 3: Ver el listado completo detallado del total facturado de cada evento.")
     print("Opción 4: Filtrar por tipo de evento.")
     print("Opción 5: Salir.")
-    opcion_elegida = input("Por favor, ingresá una opción del 1 al 5: ")
+    try:
+        opcion_elegida = int(input("Ingresá una opción del 1 al 5: "))
+    except ValueError:
+        opcion_elegida = int(input("Por favor, ingresá una opción válida del 1 al 5: "))
+        continue
     if opcion_elegida == 1:
         Opcion1()
     elif opcion_elegida == 2:
@@ -94,8 +118,6 @@ while flag:
         Opcion3()
     elif opcion_elegida == 4:
         Opcion4()
-    elif opcion_elegida == 5:
-        flag = False
     else:
-        opcion_elegida = input("Por favor, ingresá un número válido del 1 al 5: ")
+        flag = False
         
