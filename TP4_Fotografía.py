@@ -39,51 +39,11 @@
 
 # -----------------------------------------------------------------------------------------------------------------------------------
 
-# | IMPORTS | 
+# | IMPORTACIÓN |
 from random import randint
 
 
-# | FUNCIONES | 
-def Opcion1(): # Facturación del mes, costos y cantidad de eventos.
-    print("Soy la Opción 1.")
-    
-    # Código de la función
-    
-    volver_a_menu_principal()
-        
-def Opcion2(): # Facturación por tipo de evento, costo y cantidad de eventos ordenado por facturación.
-    print("Soy la Opción 2.")
-    
-    # Código de la función
-    
-    volver_a_menu_principal()
-
-def Opcion3():
-    print("Soy la Opción 3.")
-    
-    # Código de la función
-    
-    volver_a_menu_principal()
-    
-def Opcion4():
-    print("Soy la Opción 4.")
-    
-    # Código de la función
-    
-    volver_a_menu_principal()
-    
-def volver_a_menu_principal():
-    volver_a_menu_principal = str(input("\n¿Deseás volver al menú principal? (Sí: y / No: n): "))
-    volver_a_menu_principal.lower()
-    if volver_a_menu_principal == "y" or volver_a_menu_principal == "yes": 
-        return
-    else: 
-        print("¡Gracias por utilizar el programa! ¡Hasta luego!")
-        exit()
-
-
 # | VARIABLES | 
-flag = True
 matriz_tabla_eventos = [
     ["CASAMIENTO", 750, 650, 600, 50000],
     ["15 AÑOS", 850, 750, 700, 60000],
@@ -94,22 +54,27 @@ matriz_tabla_eventos = [
 eventos = []
 
 
-# | MENÚ PRINCIPAL | 
-print("Bienvenido/a al programa de gestión de tu empresa de fotografía.")
-
-while flag:
-    print("| MENÚ PRINCIPAL |")
-    print("¿Qué opción deseás seleccionar?")
-    print("\nOpción 1: Ver el total de facturación, costos y cantidad de eventos.")
+# | FUNCIONES | 
+def MenuPrincipal():
+    print("\n| MENÚ PRINCIPAL |")
+    print("Opción 1: Ver el total de facturación, costos y cantidad de eventos.")
     print("Opción 2: Ver el total de facturación por tipo de evento, costos y cantidad de eventos ordenado por facturación.")
     print("Opción 3: Ver el listado completo detallado del total facturado de cada evento.")
     print("Opción 4: Filtrar por tipo de evento.")
     print("Opción 5: Salir.")
-    try:
-        opcion_elegida = int(input("Ingresá una opción del 1 al 5: "))
-    except ValueError:
-        opcion_elegida = int(input("Por favor, ingresá una opción válida del 1 al 5: "))
-        continue
+    
+    flag = False
+    
+    while flag == False:
+        try:
+            opcion_elegida = int(input("\n> Por favor, ingresá el número de la opción que querés seleccionar (1-5): "))
+            if opcion_elegida < 1 or opcion_elegida > 5:
+                print("Respuesta inválida.")
+            else:
+                flag = True # El número es válido, sale del bucle.
+        except ValueError:
+            print("Respuesta inválida.")
+    
     if opcion_elegida == 1:
         Opcion1()
     elif opcion_elegida == 2:
@@ -118,6 +83,63 @@ while flag:
         Opcion3()
     elif opcion_elegida == 4:
         Opcion4()
+    elif opcion_elegida == 5:
+        print("Programa finalizado. ¡Hasta luego!")
+        exit()
     else:
-        flag = False
+        print("Ha ocurrido un error inesperado.")
+        exit()
+
+def Opcion1(): # Facturación del mes, costos y cantidad de eventos.
+    print("Soy la Opción 1.")
+    
+    # Código de la función
+    
+    volver_al_menu_principal()
         
+def Opcion2(): # Facturación por tipo de evento, costo y cantidad de eventos ordenado por facturación.
+    print("Soy la Opción 2.")
+    
+    # Código de la función
+    
+    volver_al_menu_principal()
+
+def Opcion3():
+    print("Soy la Opción 3.")
+    
+    # Código de la función
+    
+    volver_al_menu_principal()
+    
+def Opcion4():
+    print("Soy la Opción 4.")
+    
+    # Código de la función
+    
+    volver_al_menu_principal()
+    
+def volver_al_menu_principal():
+    flag = False
+    
+    while flag == False:
+        volver_al_menu_principal = str(input("\n¿Querés volver al menú principal? (Sí: y / No: n): "))
+        volver_al_menu_principal.lower()
+    
+        if volver_al_menu_principal == "y" or volver_al_menu_principal == "yes" or volver_al_menu_principal == "n" or volver_al_menu_principal == "no":
+            flag = True
+        else:
+            print("Respuesta inválida.")
+            
+    if volver_al_menu_principal == "y" or volver_al_menu_principal == "yes": 
+        MenuPrincipal()
+    elif volver_al_menu_principal == "n" or volver_al_menu_principal == "no": 
+        print("Programa finalizado. ¡Hasta luego!")
+        exit()
+    else:
+        print("Ha ocurrido un error inesperado.")
+        exit()
+
+
+# | PROGRAMA PRINCIPAL |
+print("Bienvenido/a al programa de gestión de tu empresa de fotografía.")
+MenuPrincipal()
