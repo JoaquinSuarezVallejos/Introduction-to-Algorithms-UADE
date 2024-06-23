@@ -1,4 +1,4 @@
-# TP 4 - Fotografía
+# TP 4 - FOTOGRAFÍA
 # Materia: Introducción a la Algoritmia
 # Profesora: Julia Monasterio
 # Alumnos: Julián Curi y Joaquín Suárez Vallejos
@@ -9,12 +9,12 @@
 # mes, el cual se calcula según la cantidad de fotos y el tipo de evento y para ello cuentan
 # con la siguiente información:
 
-# Tipo de evento	Precio por unidad hasta 50 fotos	Precio por unidad más de 50 fotos	Precio por unidad más de 100 fotos	Costo tipo de evento (*)				
-# CASAMIENTO:	      $750	                                   $650	                                   $600	                          $50000
-# 15 AÑOS:	          $850	                                   $750	                                   $700	                          $60000
-# CUMPLEAÑOS:	      $650	                                   $550	                                   $550	                          $35000
-# BAUTISMOS:          $750	                                   $650	                                   $650	                          $38000
-# OTROS:	          $1000	                                   $900	                                   $800	                          $25000
+# |Tipo de evento|	|Precio por unidad hasta 50 fotos|	|Precio por unidad más de 50 fotos|	 |Precio por unidad más de 100 fotos|  |Costo tipo de evento (*)|				
+# |CASAMIENTO:	 |  |          $750	                 |  |              $650	              |  |               $600	            |  |        $50000          |
+# |15 AÑOS:	     |  |          $850	                 |  |              $750	              |  |               $700	            |  |        $60000          |
+# |CUMPLEAÑOS:	 |  |          $650	                 |  |              $550	              |  |               $550	            |  |        $35000          |
+# |BAUTISMOS:    |  |          $750	                 |  |              $650	              |  |               $650	            |  |        $38000          |
+# |OTROS:	     |  |          $1000	             |  |              $900	              |  |               $800	            |  |        $25000          |
 
 # (*) El costo es fijo por tipo de evento, en el mismo está incluido la cantidad de
 # empleados y el tipo de equipamiento que se tienen que ocupar por cada uno.
@@ -31,7 +31,7 @@
 # ●	Listado completo detallado del total facturado de cada evento con su tipo, ordenado por total facturado. (Opción 3)
 # ●	Poder seleccionar un tipo de evento y que se detallen la facturación y cantidad de fotos de cada uno de los eventos de ese tipo. (Opción 4)
 
-# Objetivo:
+# OBJETIVO:
 # Se solicita el desarrollo de un programa, con un menú principal para poder acceder a las opciones detalladas. 
 # El programa solo debe terminar cuando el usuario elija la opción del menú correspondiente a SALIR.
 # Los datos serán generados por números al azar ya que la carga manual se complejiza para la ejecución. 
@@ -43,15 +43,46 @@
 from random import randint
 
 
-# | VARIABLES | 
-matriz_tabla_eventos = [
-    ["CASAMIENTO", 750, 650, 600, 50000],
-    ["15 AÑOS", 850, 750, 700, 60000],
-    ["CUMPLEAÑOS", 650, 550, 550, 35000],
-    ["BAUTISMOS", 750, 650, 650, 38000],
-    ["OTROS", 1000, 900, 800, 25000]
-]
+# | VARIABLES |
 eventos = []
+tipos_evento = ["CASAMIENTO", "15 AÑOS", "CUMPLEAÑOS", "BAUTISMOS", "OTROS"]
+cantidad_eventos = randint(30, 80) # Cantidad de eventos generados al azar.
+total_facturacion = 0
+costos = 0
+cantidad_fotos = 0
+
+
+# | GENERACIÓN DE DATOS |
+for i in range(cantidad_eventos):
+    evento = {}
+    evento["tipo_evento"] = tipos_evento[randint(0, 4)]
+    evento["cantidad_fotos"] = randint(50, 500)
+    eventos.append(evento)
+    cantidad_fotos += evento["cantidad_fotos"]
+    
+    if evento["cantidad_fotos"] <= 50:
+        total_facturacion += evento["cantidad_fotos"] * 50
+    elif evento["cantidad_fotos"] > 50 and evento["cantidad_fotos"] <= 100:
+        total_facturacion += evento["cantidad_fotos"] * 50
+    elif evento["cantidad_fotos"] > 100:
+        total_facturacion += evento["cantidad_fotos"] * 50
+    else:
+        print("Ha ocurrido un error inesperado.")
+        exit()
+    
+    if evento["tipo_evento"] == "CASAMIENTO":
+        costos += 50000
+    elif evento["tipo_evento"] == "15 AÑOS":
+        costos += 60000
+    elif evento["tipo_evento"] == "CUMPLEAÑOS":
+        costos += 35000
+    elif evento["tipo_evento"] == "BAUTISMOS":
+        costos += 38000
+    elif evento["tipo_evento"] == "OTROS":
+        costos += 25000
+    else:
+        print("Ha ocurrido un error inesperado.")
+        exit()
 
 
 # | FUNCIONES | 
