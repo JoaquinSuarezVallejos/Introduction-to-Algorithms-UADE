@@ -45,11 +45,11 @@ from random import randint
 # | FUNCIONES | 
 def MenuPrincipal():
     print("\n| MENÚ PRINCIPAL |")
-    print("Opción 1: Ver el total de facturación, costos y cantidad de eventos.")
-    print("Opción 2: Ver el total de facturación por tipo de evento, costos y cantidad de eventos ordenado por facturación.")
-    print("Opción 3: Ver el listado completo detallado del total facturado de cada evento.")
-    print("Opción 4: Filtrar por tipo de evento.")
-    print("Opción 5: Salir.")
+    print("OPCIÓN 1: Ver el total de facturación, costos y cantidad de eventos.")
+    print("OPCIÓN 2: Ver el total de facturación por tipo de evento, costos y cantidad de eventos ordenado por facturación.")
+    print("OPCIÓN 3: Ver el listado completo detallado del total facturado de cada evento.")
+    print("OPCIÓN 4: Filtrar por tipo de evento.")
+    print("OPCIÓN 5: Salir.")
     
     flag = False
     
@@ -78,9 +78,7 @@ def MenuPrincipal():
         error()
 
 def Opcion1(): # Facturación del mes, costos y cantidad de eventos.
-    print("Soy la Opción 1.")
-    
-    # Código de la función
+    print("\n| OPCIÓN 1 |")
     
     volver_al_menu_principal()
         
@@ -131,76 +129,89 @@ def error():
 
 
 # | VARIABLES y CONSTANTES|
-TIPO_EVENTO = ["CASAMIENTO", "15 AÑOS", "CUMPLEAÑOS", "BAUTISMOS", "OTROS"]
-COSTO_TIPO_EVENTO = [50000, 60000, 35000, 38000, 25000]
+TIPO_EVENTO = ["CASAMIENTO", "15 AÑOS", "CUMPLEAÑOS", "BAUTISMOS", "OTROS"] # Tipo de evento.
+COSTO_TIPO_EVENTO = [50000, 60000, 35000, 38000, 25000] # Costo por tipo de evento.
+PRECIOS_FOTOS_EVENTO = [ # Precios de fotos por tipo de evento.
+    # [0] Precio por unidad hasta 50 fotos, [1] Precio por unidad más de 50 fotos, [2] Precio por unidad más de 100 fotos.
+    [750, 650, 600], # CASAMIENTO
+    [850, 750, 700], # 15 AÑOS
+    [650, 550, 500], # CUMPLEAÑOS
+    [750, 650, 600], # BAUTISMOS
+    [1000, 900, 800] # OTROS
+]
 
 eventos_del_mes = []
-cantidad_eventos = randint(30, 80) # Cantidad de eventos generados al azar, considerando el mínimo y el máximo del enunciado.
+cantidad_eventos = 0
+facturacion_evento = 0
+costo_evento = 0
 facturacion_total = 0
 costo_total = 0
 
 
 # | GENERACIÓN DE DATOS |
+cantidad_eventos = randint(30, 80) # Cantidad de eventos generados al azar, considerando el mínimo y el máximo del enunciado.
 for evento in range(cantidad_eventos):
     tipo_evento = TIPO_EVENTO[randint(0, 4)]
     cantidad_fotos = randint(30, 500) # Cantidad de fotos generada al azar, considerando el mínimo y el máximo del enunciado.
     
-    eventos_del_mes.append([tipo_evento, cantidad_fotos])
-    
     if cantidad_fotos <= 50: # Precio por unidad hasta 50 fotos
         if tipo_evento == "CASAMIENTO":
-            facturacion_evento = 750 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[0][0]
         elif tipo_evento == "15 AÑOS":
-            facturacion_evento = 850 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[1][0]
         elif tipo_evento == "CUMPLEAÑOS":
-            facturacion_evento = 650 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[2][0]
         elif tipo_evento == "BAUTISMOS":
-            facturacion_evento = 750 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[3][0]
         elif tipo_evento == "OTROS":
-            facturacion_evento = 1000 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[4][0]
         else:
             error()
     elif cantidad_fotos > 50 and cantidad_fotos <= 100: # Precio por unidad más de 50 fotos
         if tipo_evento == "CASAMIENTO":
-            facturacion_evento = 650 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[0][1]
         elif tipo_evento == "15 AÑOS":
-            facturacion_evento = 750 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[1][1]
         elif tipo_evento == "CUMPLEAÑOS":
-            facturacion_evento = 550 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[2][1]
         elif tipo_evento == "BAUTISMOS":
-            facturacion_evento = 650 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[3][1]
         elif tipo_evento == "OTROS":
-            facturacion_evento = 900 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[4][1]
         else:
             error()
     elif cantidad_fotos > 100: # Precio por unidad más de 100 fotos
         if tipo_evento == "CASAMIENTO":
-            facturacion_evento = 600 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[0][2]
         elif tipo_evento == "15 AÑOS":
-            facturacion_evento = 700 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[1][2]
         elif tipo_evento == "CUMPLEAÑOS":
-            facturacion_evento = 500 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[2][2]
         elif tipo_evento == "BAUTISMOS":
-            facturacion_evento = 600 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[3][2]
         elif tipo_evento == "OTROS":
-            facturacion_evento = 800 * cantidad_fotos
+            facturacion_evento = cantidad_fotos * PRECIOS_FOTOS_EVENTO[4][2]
         else:
             error()
     else:
         error()
         
-    facturacion_total += facturacion_evento
-    
     if tipo_evento == "CASAMIENTO":
-        costo_total += COSTO_TIPO_EVENTO[0]
+        costo_evento = COSTO_TIPO_EVENTO[0]
     elif tipo_evento == "15 AÑOS":
-        costo_total += COSTO_TIPO_EVENTO[1]
+        costo_evento = COSTO_TIPO_EVENTO[1]
     elif tipo_evento == "CUMPLEAÑOS":
-        costo_total += COSTO_TIPO_EVENTO[2]
+        costo_evento = COSTO_TIPO_EVENTO[2]
     elif tipo_evento == "BAUTISMOS":
-        costo_total += COSTO_TIPO_EVENTO[3]
+        costo_evento = COSTO_TIPO_EVENTO[3]
     elif tipo_evento == "OTROS":
-        costo_total += COSTO_TIPO_EVENTO[4]
+        costo_evento = COSTO_TIPO_EVENTO[4]
+        
+    costo_total += costo_evento
+    
+    facturacion_total += (facturacion_evento + costo_evento)
+    
+    eventos_del_mes.append([tipo_evento, cantidad_fotos, facturacion_evento, costo_evento])
     
     
 # | PROGRAMA PRINCIPAL |
