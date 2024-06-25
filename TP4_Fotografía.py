@@ -112,19 +112,45 @@ def Opcion2(): # Total de facturación por tipo de evento, costo y cantidad de e
     print("\n| OPCIÓN 2 |")
     print("- Junio de 2024 -")
     
-    print("\nCASAMIENTOS:")
-    for evento in eventos_del_mes: 
-        if evento[0] == "CASAMIENTO":
-            print(f"Evento: {evento[0]} | Cantidad de fotos: {evento[1]} | Facturación: ${evento[2]} | Costo: ${evento[3]}")
-
+    # Crear una lista con la información de cada tipo de evento
+    eventos_por_tipo = []
+    for i in range(len(TIPO_EVENTO)):
+        tipo_evento = TIPO_EVENTO[i]
+        cantidad_eventos_x_tipo = 0
+        facturacion_x_tipo = 0
+        costo_x_tipo = 0
+        for evento in eventos_del_mes:
+            if evento[0] == tipo_evento:
+                cantidad_eventos_x_tipo += 1
+                facturacion_x_tipo += evento[2]
+                costo_x_tipo += evento[3]
+        eventos_por_tipo.append([tipo_evento, cantidad_eventos_x_tipo, facturacion_x_tipo, costo_x_tipo])
     
+    # Ordenar la lista de eventos por facturación de mayor a menor
+    for i in range(len(eventos_por_tipo)):
+        for j in range(i+1, len(eventos_por_tipo)):
+            if eventos_por_tipo[i][2] < eventos_por_tipo[j][2]:
+                eventos_por_tipo[i], eventos_por_tipo[j] = eventos_por_tipo[j], eventos_por_tipo[i]
+      
+    # Imprimir la información de cada tipo de evento
+    for evento in eventos_por_tipo:
+        print(f"Tipo de evento: {evento[0]} | Cantidad de eventos: {evento[1]} | Facturación total: ${evento[2]} | Costos totales: ${evento[3]}")
     
     volver_al_menu_principal()
 
 def Opcion3(): # Listado completo detallado del total facturado de cada evento con su tipo, ordenado por total facturado.
-    print("Soy la Opción 3.")
+    print("\n| OPCIÓN 3 |")
+    print("- Junio de 2024 -")
     
-    # Código de la función
+    print("\nCASAMIENTOS:")
+    for evento in eventos_del_mes: 
+        if evento[0] == "CASAMIENTO":
+            print(f"Evento: {evento[0]} | Cantidad de fotos: {evento[1]} | Facturación: ${evento[2]} | Costo: ${evento[3]}")
+        
+    print("\n15 AÑOS:")
+    for evento in eventos_del_mes:
+        if evento[0] == "15 AÑOS":
+            print(f"Evento: {evento[0]} | Cantidad de fotos: {evento[1]} | Facturación: ${evento[2]} | Costo: ${evento[3]}")
     
     volver_al_menu_principal()
     
