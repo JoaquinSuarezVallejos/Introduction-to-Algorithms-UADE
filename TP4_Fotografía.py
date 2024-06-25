@@ -43,9 +43,9 @@ from random import randint
 
 
 # | VARIABLES y CONSTANTES |
-TIPO_EVENTO = ["CASAMIENTO", "15 AÑOS", "CUMPLEAÑOS", "BAUTISMOS", "OTROS"] # Tipo de evento.
-COSTO_TIPO_EVENTO = [50000, 60000, 35000, 38000, 25000] # Costo por tipo de evento.
-PRECIOS_FOTOS_EVENTO = [ # Precios de fotos por tipo de evento.
+TIPO_EVENTO = ["CASAMIENTO", "15 AÑOS", "CUMPLEAÑOS", "BAUTISMOS", "OTROS"] # Lista: tipo de evento.
+COSTO_TIPO_EVENTO = [50000, 60000, 35000, 38000, 25000] # Lista: costo por tipo de evento.
+PRECIOS_FOTOS_EVENTO = [ # Matriz: precios de fotos por tipo de evento.
     # [0] Precio por unidad hasta 50 fotos, [1] Precio por unidad más de 50 fotos, [2] Precio por unidad más de 100 fotos.
     [750, 650, 600], # CASAMIENTO
     [850, 750, 700], # 15 AÑOS
@@ -54,7 +54,7 @@ PRECIOS_FOTOS_EVENTO = [ # Precios de fotos por tipo de evento.
     [1000, 900, 800] # OTROS
 ]
 
-eventos_del_mes = []
+eventos_del_mes = [] # Lista: eventos realizados en el mes.
 cantidad_eventos = 0
 facturacion_evento = 0
 costo_evento = 0
@@ -66,9 +66,9 @@ costo_total = 0
 def MenuPrincipal():
     print("\n| MENÚ PRINCIPAL |")
     print("- Junio de 2024 -")
-    print("OPCIÓN 1: Ver el total de facturación, los costos y la cantidad de eventos.")
-    print("OPCIÓN 2: Ver el total de facturación por tipo de evento, los costos y la cantidad de eventos.")
-    print("OPCIÓN 3: Ver el listado completo detallado del total facturado de cada evento.")
+    print("OPCIÓN 1: Ver el total de facturación y de benificio neto, los costos y la cantidad de eventos.")
+    print("OPCIÓN 2: Ver el total de facturación y de beneficio neto por tipo de evento, los costos y la cantidad de eventos.")
+    print("OPCIÓN 3: Ver el listado completo detallado del total facturado de cada evento realizado.")
     print("OPCIÓN 4: Seleccionar un tipo de evento y ver el detalle de facturación y la cantidad de fotos de cada evento de ese tipo.")
     print("OPCIÓN 5: Salir.")
     
@@ -93,24 +93,29 @@ def MenuPrincipal():
     elif opcion_elegida == 4:
         Opcion4()
     elif opcion_elegida == 5:
-        print("Programa finalizado. ¡Hasta luego!")
-        exit()
+        finalizarPrograma()
     else:
         error()
+        
 
-def Opcion1(): # Total de la facturación del mes, costos y cantidad de eventos.
+def Opcion1():
     print("\n| OPCIÓN 1 |")
     print("- Junio de 2024 -")
+    print("Total de facturación y de beneficio neto, costos y cantidad de eventos.")
     
     print(f"\nCantidad de eventos: {cantidad_eventos}")
     print(f"Facturación total: ${facturacion_total}")
     print(f"Costos totales: ${costo_total}")
+    print(f"Beneficio neto: ${facturacion_total - costo_total}")
     
     volver_al_menu_principal()
+    
         
-def Opcion2(): # Total de facturación por tipo de evento, costo y cantidad de eventos ordenado por facturación.
+def Opcion2():
     print("\n| OPCIÓN 2 |")
     print("- Junio de 2024 -")
+    print("Total de facturación y de beneficio neto por tipo de evento, costos y cantidad de eventos. Orden descendente por facturación.")
+    print("")
     
     # Crear una lista con la información de cada tipo de evento
     eventos_por_tipo = []
@@ -118,48 +123,98 @@ def Opcion2(): # Total de facturación por tipo de evento, costo y cantidad de e
         tipo_evento = TIPO_EVENTO[i]
         cantidad_eventos_x_tipo = 0
         facturacion_x_tipo = 0
-        costo_x_tipo = 0
+        costos_x_tipo = 0
         for evento in eventos_del_mes:
             if evento[0] == tipo_evento:
                 cantidad_eventos_x_tipo += 1
                 facturacion_x_tipo += evento[2]
-                costo_x_tipo += evento[3]
-        eventos_por_tipo.append([tipo_evento, cantidad_eventos_x_tipo, facturacion_x_tipo, costo_x_tipo])
-    
-    # Ordenar la lista de eventos por facturación de mayor a menor
-    for i in range(len(eventos_por_tipo)):
-        for j in range(i+1, len(eventos_por_tipo)):
-            if eventos_por_tipo[i][2] < eventos_por_tipo[j][2]:
-                eventos_por_tipo[i], eventos_por_tipo[j] = eventos_por_tipo[j], eventos_por_tipo[i]
+                costos_x_tipo += evento[3]
+        eventos_por_tipo.append([tipo_evento, cantidad_eventos_x_tipo, facturacion_x_tipo, costos_x_tipo])
+        
+    ordenar_eventos_por_facturacion(eventos_por_tipo)
       
     # Imprimir la información de cada tipo de evento
+    contadorEvento = 1
     for evento in eventos_por_tipo:
-        print(f"Tipo de evento: {evento[0]} | Cantidad de eventos: {evento[1]} | Facturación total: ${evento[2]} | Costos totales: ${evento[3]}")
-    
+        print(f"{contadorEvento}. Tipo de evento: {evento[0]} | Cantidad de eventos: {evento[1]} | Facturación total: ${evento[2]} | Costos totales: ${evento[3]} | Beneficio neto: ${evento[2] - evento[3]}")
+        contadorEvento += 1
+        
     volver_al_menu_principal()
+    
 
-def Opcion3(): # Listado completo detallado del total facturado de cada evento con su tipo, ordenado por total facturado.
+def Opcion3():
     print("\n| OPCIÓN 3 |")
     print("- Junio de 2024 -")
-    
-    print("\nCASAMIENTOS:")
-    for evento in eventos_del_mes: 
-        if evento[0] == "CASAMIENTO":
-            print(f"Evento: {evento[0]} | Cantidad de fotos: {evento[1]} | Facturación: ${evento[2]} | Costo: ${evento[3]}")
+    print("Listado completo detallado del total facturado de cada evento con su tipo. Orden descendente por facturación.")
+    print("")
         
-    print("\n15 AÑOS:")
+    listado_todos_los_eventos = []
     for evento in eventos_del_mes:
-        if evento[0] == "15 AÑOS":
-            print(f"Evento: {evento[0]} | Cantidad de fotos: {evento[1]} | Facturación: ${evento[2]} | Costo: ${evento[3]}")
+        listado_todos_los_eventos.append(evento)
+        
+    ordenar_eventos_por_facturacion(listado_todos_los_eventos)
+    
+    contadorEvento = 1
+    for evento in listado_todos_los_eventos:        
+        print(f"{contadorEvento}. Tipo de evento: {evento[0]} | Facturación total: ${evento[2]}")
+        contadorEvento += 1
+        
+    volver_al_menu_principal()
+
+    
+def Opcion4():
+    print("\n| OPCIÓN 4 |")
+    print("- Junio de 2024 -")
+    print("\n1: CASAMIENTO | 2: 15 AÑOS | 3: CUMPLEAÑOS | 4: BAUTISMOS | 5: OTROS")
+    
+    flag = False
+    
+    while flag == False:
+        try:
+            num_evento = int(input("Seleccioná un tipo de evento (1-5) para ver el detalle de facturación (orden descendente) y la cantidad de fotos de cada evento de ese tipo: "))
+            if num_evento < 1 or num_evento > 5:
+                print("Respuesta inválida.")
+            else:
+                flag = True # El número es válido, sale del bucle.
+        except ValueError:
+            print("Respuesta inválida.")
+    
+    if num_evento == 1:
+        tipo_evento = "CASAMIENTO"
+    elif num_evento == 2:
+        tipo_evento = "15 AÑOS"
+    elif num_evento == 3:
+        tipo_evento = "CUMPLEAÑOS"
+    elif num_evento == 4:
+        tipo_evento = "BAUTISMOS"
+    elif num_evento == 5:
+        tipo_evento = "OTROS"
+    else:
+        error()
+    
+    eventos_por_tipo = []
+    for evento in eventos_del_mes:
+        if evento[0] == tipo_evento:
+            eventos_por_tipo.append(evento)
+            
+    ordenar_eventos_por_facturacion(eventos_por_tipo)
+    
+    contadorEvento = 1
+    for evento in eventos_por_tipo:
+        print(f"{contadorEvento}. Tipo de evento: {evento[0]} | Cantidad de fotos: {evento[1]} | Facturación total: ${evento[2]}")
+        contadorEvento += 1
     
     volver_al_menu_principal()
     
-def Opcion4(): # Poder seleccionar un tipo de evento y que se detallen la facturación y cantidad de fotos de cada uno de los eventos de ese tipo.
-    print("Soy la Opción 4.")
     
-    # Código de la función
+def ordenar_eventos_por_facturacion(lista_eventos):
+    # Ordenar la lista de eventos por facturación de mayor a menor (Bubble Sort)
+    for i in range(len(lista_eventos)):
+        for j in range(i+1, len(lista_eventos)):
+            if lista_eventos[i][2] < lista_eventos[j][2]:
+                lista_eventos[i], lista_eventos[j] = lista_eventos[j], lista_eventos[i]
+    return lista_eventos
     
-    volver_al_menu_principal()
     
 def volver_al_menu_principal():
     flag = False
@@ -176,10 +231,15 @@ def volver_al_menu_principal():
     if volver_al_menu_principal == "y" or volver_al_menu_principal == "yes": 
         MenuPrincipal()
     elif volver_al_menu_principal == "n" or volver_al_menu_principal == "no": 
-        print("Programa finalizado. ¡Hasta luego!")
-        exit()
+        finalizarPrograma()
     else:
         error()
+        
+        
+def finalizarPrograma():
+    print("Programa finalizado. ¡Hasta luego!")
+    exit()
+        
         
 def error():
     print("Ha ocurrido un error inesperado.")
