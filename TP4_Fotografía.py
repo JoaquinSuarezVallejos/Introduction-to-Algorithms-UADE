@@ -45,10 +45,11 @@ from random import randint
 # | FUNCIONES | 
 def MenuPrincipal():
     print("\n| MENÚ PRINCIPAL |")
-    print("OPCIÓN 1: Ver el total de facturación, costos y cantidad de eventos.")
-    print("OPCIÓN 2: Ver el total de facturación por tipo de evento, costos y cantidad de eventos ordenado por facturación.")
+    print("- Junio de 2024 -")
+    print("OPCIÓN 1: Ver el total de facturación, los costos y la cantidad de eventos.")
+    print("OPCIÓN 2: Ver el total de facturación por tipo de evento, los costos y la cantidad de eventos.")
     print("OPCIÓN 3: Ver el listado completo detallado del total facturado de cada evento.")
-    print("OPCIÓN 4: Filtrar por tipo de evento.")
+    print("OPCIÓN 4: Seleccionar un tipo de evento y ver el detalle de facturación y la cantidad de fotos de cada evento de ese tipo.")
     print("OPCIÓN 5: Salir.")
     
     flag = False
@@ -77,26 +78,37 @@ def MenuPrincipal():
     else:
         error()
 
-def Opcion1(): # Facturación del mes, costos y cantidad de eventos.
+def Opcion1(): # Total de la facturación del mes, costos y cantidad de eventos.
     print("\n| OPCIÓN 1 |")
+    print("- Junio de 2024 -")
+    
+    print(f"\nCantidad de eventos: {cantidad_eventos}")
+    print(f"Costos totales: ${costo_total}")
+    print(f"Facturación total: ${facturacion_total}")
     
     volver_al_menu_principal()
         
-def Opcion2(): # Facturación por tipo de evento, costo y cantidad de eventos ordenado por facturación.
-    print("Soy la Opción 2.")
+def Opcion2(): # Total de facturación por tipo de evento, costo y cantidad de eventos ordenado por facturación.
+    print("\n| OPCIÓN 2 |")
+    print("- Junio de 2024 -")
     
-    # Código de la función
+    print("\nCASAMIENTOS:")
+    for evento in eventos_del_mes: 
+        if evento[0] == "CASAMIENTO":
+            print(f"Evento: {evento[0]} | Cantidad de fotos: {evento[1]} | Facturación: ${evento[2]} | Costo: ${evento[3]}")
+
+    
     
     volver_al_menu_principal()
 
-def Opcion3():
+def Opcion3(): # Listado completo detallado del total facturado de cada evento con su tipo, ordenado por total facturado.
     print("Soy la Opción 3.")
     
     # Código de la función
     
     volver_al_menu_principal()
     
-def Opcion4():
+def Opcion4(): # Poder seleccionar un tipo de evento y que se detallen la facturación y cantidad de fotos de cada uno de los eventos de ese tipo.
     print("Soy la Opción 4.")
     
     # Código de la función
@@ -209,7 +221,8 @@ for evento in range(cantidad_eventos):
         
     costo_total += costo_evento
     
-    facturacion_total += (facturacion_evento + costo_evento)
+    facturacion_evento += costo_evento
+    facturacion_total += facturacion_evento
     
     eventos_del_mes.append([tipo_evento, cantidad_fotos, facturacion_evento, costo_evento])
     
