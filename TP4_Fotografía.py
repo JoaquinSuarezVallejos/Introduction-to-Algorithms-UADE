@@ -103,8 +103,8 @@ def Opcion1(): # Total de la facturación del mes, costos y cantidad de eventos.
     print("- Junio de 2024 -")
     
     print(f"\nCantidad de eventos: {cantidad_eventos}")
-    print(f"Costos totales: ${costo_total}")
     print(f"Facturación total: ${facturacion_total}")
+    print(f"Costos totales: ${costo_total}")
     
     volver_al_menu_principal()
         
@@ -165,7 +165,7 @@ def volver_al_menu_principal():
     flag = False
     
     while flag == False:
-        volver_al_menu_principal = str(input("\n¿Querés volver al menú principal? (Sí: y / No: n): "))
+        volver_al_menu_principal = str(input("\n> ¿Querés volver al menú principal? (Sí: y / No: n): "))
         volver_al_menu_principal.lower()
     
         if volver_al_menu_principal == "y" or volver_al_menu_principal == "yes" or volver_al_menu_principal == "n" or volver_al_menu_principal == "no":
@@ -254,7 +254,7 @@ for evento in range(cantidad_eventos):
     
     
 # | PROGRAMA PRINCIPAL |
-print("Bienvenido/a al programa de gestión de tu empresa de fotografía.")
+print("\nBienvenido/a al programa de gestión de tu empresa de fotografía.")
 MenuPrincipal()
 
 
