@@ -42,6 +42,26 @@
 from random import randint
 
 
+# | VARIABLES y CONSTANTES |
+TIPO_EVENTO = ["CASAMIENTO", "15 AÑOS", "CUMPLEAÑOS", "BAUTISMOS", "OTROS"] # Tipo de evento.
+COSTO_TIPO_EVENTO = [50000, 60000, 35000, 38000, 25000] # Costo por tipo de evento.
+PRECIOS_FOTOS_EVENTO = [ # Precios de fotos por tipo de evento.
+    # [0] Precio por unidad hasta 50 fotos, [1] Precio por unidad más de 50 fotos, [2] Precio por unidad más de 100 fotos.
+    [750, 650, 600], # CASAMIENTO
+    [850, 750, 700], # 15 AÑOS
+    [650, 550, 500], # CUMPLEAÑOS
+    [750, 650, 600], # BAUTISMOS
+    [1000, 900, 800] # OTROS
+]
+
+eventos_del_mes = []
+cantidad_eventos = 0
+facturacion_evento = 0
+costo_evento = 0
+facturacion_total = 0
+costo_total = 0
+
+
 # | FUNCIONES | 
 def MenuPrincipal():
     print("\n| MENÚ PRINCIPAL |")
@@ -138,26 +158,6 @@ def volver_al_menu_principal():
 def error():
     print("Ha ocurrido un error inesperado.")
     exit()
-
-
-# | VARIABLES y CONSTANTES|
-TIPO_EVENTO = ["CASAMIENTO", "15 AÑOS", "CUMPLEAÑOS", "BAUTISMOS", "OTROS"] # Tipo de evento.
-COSTO_TIPO_EVENTO = [50000, 60000, 35000, 38000, 25000] # Costo por tipo de evento.
-PRECIOS_FOTOS_EVENTO = [ # Precios de fotos por tipo de evento.
-    # [0] Precio por unidad hasta 50 fotos, [1] Precio por unidad más de 50 fotos, [2] Precio por unidad más de 100 fotos.
-    [750, 650, 600], # CASAMIENTO
-    [850, 750, 700], # 15 AÑOS
-    [650, 550, 500], # CUMPLEAÑOS
-    [750, 650, 600], # BAUTISMOS
-    [1000, 900, 800] # OTROS
-]
-
-eventos_del_mes = []
-cantidad_eventos = 0
-facturacion_evento = 0
-costo_evento = 0
-facturacion_total = 0
-costo_total = 0
 
 
 # | GENERACIÓN DE DATOS |
