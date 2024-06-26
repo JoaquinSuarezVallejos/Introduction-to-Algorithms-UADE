@@ -66,7 +66,6 @@ facturacion_evento = 0
 costo_evento = 0
 
 
-
 # | FUNCIONES | 
 def MenuPrincipal():
     print("\n| MENÚ PRINCIPAL |") # Mostramos el menú
