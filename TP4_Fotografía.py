@@ -78,7 +78,7 @@ def MenuPrincipal():
     
     flag = False
     
-    while flag == False: # Pedimos input para que se seleccione opción
+    while flag == False: # Pedimos input para que se seleccione una opción
         try:
             opcion_elegida = int(input("\n> Por favor, ingresá el número de la opción que querés seleccionar (1-5): "))
             if opcion_elegida < 1 or opcion_elegida > 5:
