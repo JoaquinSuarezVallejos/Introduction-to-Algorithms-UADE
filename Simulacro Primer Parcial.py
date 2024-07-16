@@ -102,7 +102,7 @@ def Ejercicio2():
 xCheck = False
 
 while xCheck == False:
-    ejercicioSeleccionado = int(input("\nIngresá el número del ejercicio que querés ejecutar (del 1 al 14) o '0' para salir del programa: "))
+    ejercicioSeleccionado = int(input("\nIngresá el número del ejercicio que querés ejecutar (del 1 al 2) o '0' para salir del programa: "))
     if ejercicioSeleccionado == 1:
         Ejercicio1()
     elif ejercicioSeleccionado == 2:
@@ -111,4 +111,4 @@ while xCheck == False:
         xCheck = True
         print("Programa finalizado. ¡Hasta luego!")
     else:
-        print("El número ingresado no corresponde a ningún ejercicio. Por favor, ingresá un número del 1 al 14 o '0' para salir del programa: ")
+        print("El número ingresado no corresponde a ningún ejercicio. Por favor, ingresá un número del 1 al 2 o '0' para salir del programa: ")
