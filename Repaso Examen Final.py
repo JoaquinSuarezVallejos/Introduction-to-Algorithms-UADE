@@ -114,8 +114,57 @@ def Ejercicio1():
 # • Mostrar por pantalla el listado ordenado informando el número de unidad y la superficie en metros cuadrados.
 
 def Ejercicio2():
-    pass
+    
+    numero_unidades = []
+    superficie_unidades = []
+        
+    def cargar_datos_edificio():
+        exit_flag = False
+        duplicado_flag = False
+        isDuplicado = False
 
+        while exit_flag == False:
+            while duplicado_flag == False:
+                unidad = int(input("\n> (-1 para finalizar la carga de datos) Ingresá un número de unidad: "))
+                if unidad == -1:
+                    exit_flag = True
+                    
+                isDuplicado = False
+                for i in range(len(numero_unidades)):
+                    if unidad == numero_unidades[i]:
+                        isDuplicado = True
+                        print("\n! Ingresaste un número de unidad duplicado por error, no se registró.")
+                if isDuplicado == False:
+                    duplicado_flag = True
+            
+            if unidad != -1:     
+                duplicado_flag = False
+                superficie = int(input("> Ahora ingresá su superficie en m2: "))
+                
+                numero_unidades.append(unidad)
+                superficie_unidades.append(superficie)
+
+        VALOR_EXPENSAS_M2 = int(input("\nPor último, ingresá el valor de expensas por m2: "))
+        while VALOR_EXPENSAS_M2 < 1:
+            VALOR_EXPENSAS_M2 = int(input("\nPor favor, ingresá un valor válido: "))
+        
+        # TO-DO
+        
+        return numero_unidades, superficie_unidades
+    
+    def informar_promedio_expensas():
+        promedio_expensas = 0
+        
+        print(f"\n El promedio de expensas del mes es de: ${promedio_expensas}")
+        
+    def main():
+        print("\n- Sistema de Gestión de las Expensas del Edificio 'Albarellos' -")
+        print("A continuación, vas a introducir uno por uno cada número de unidad en el edificio, junto con su superficie en m2:")
+        cargar_datos_edificio()
+        
+    
+    if __name__ == "__main__":
+        main()
 
 
 ############################################################################################################
@@ -127,7 +176,7 @@ while xCheck == False:
     if ejercicioSeleccionado == 1:
         Ejercicio1()
     elif ejercicioSeleccionado == 2:
-        pass
+        Ejercicio2()
     elif ejercicioSeleccionado == 3:
         pass
     elif ejercicioSeleccionado == 4:
