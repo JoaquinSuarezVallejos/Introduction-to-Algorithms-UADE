@@ -117,11 +117,12 @@ def Ejercicio2():
     
     numero_unidades = []
     superficie_unidades = []
-        
+    
     def cargar_datos_edificio():
         exit_flag = False
         duplicado_flag = False
         isDuplicado = False
+        VALOR_EXPENSAS_M2 = 0
 
         while exit_flag == False:
             while duplicado_flag == False:
@@ -140,27 +141,51 @@ def Ejercicio2():
             if unidad != -1:     
                 duplicado_flag = False
                 superficie = int(input("> Ahora ingresá su superficie en m2: "))
+                while superficie < 1:
+                    superficie = int(input("\n> Por favor, ingresá un número válido: "))
                 
                 numero_unidades.append(unidad)
                 superficie_unidades.append(superficie)
 
-        VALOR_EXPENSAS_M2 = int(input("\nPor último, ingresá el valor de expensas por m2: "))
+        VALOR_EXPENSAS_M2 = int(input("\n> Por último, ingresá el valor de expensas por m2: "))
         while VALOR_EXPENSAS_M2 < 1:
-            VALOR_EXPENSAS_M2 = int(input("\nPor favor, ingresá un valor válido: "))
+            VALOR_EXPENSAS_M2 = int(input("\n> Por favor, ingresá un valor válido: "))
         
-        # TO-DO
-        
-        return numero_unidades, superficie_unidades
+        return numero_unidades, superficie_unidades, VALOR_EXPENSAS_M2
     
-    def informar_promedio_expensas():
+    
+    def informar_promedio_expensas(VALOR_EXPENSAS_M2):
         promedio_expensas = 0
+        suma_total_m2 = 0
+        for i in range(len(superficie_unidades)):
+            suma_total_m2 += superficie_unidades[i]
         
-        print(f"\n El promedio de expensas del mes es de: ${promedio_expensas}")
+        promedio_expensas = (suma_total_m2 * VALOR_EXPENSAS_M2) / len(numero_unidades)
+        
+        print(f"\nEl promedio de expensas que paga el propietario/a de una unidad mensualmente es de: ${promedio_expensas}")
+    
+    
+    def ordenar_listado():
+        for i in range(len(superficie_unidades)): # Bubble Sort en orden descendente (de mayor a menor)
+            for j in range(0, len(superficie_unidades)-i-1):
+                if superficie_unidades[j] < superficie_unidades[j+1]:
+                    superficie_unidades[j], superficie_unidades[j+1] = superficie_unidades[j+1], superficie_unidades[j]
+                    numero_unidades[j], numero_unidades[j+1] = numero_unidades[j+1], numero_unidades[j]
+    
+    
+    def mostrar_listado_ordenado():
+        print("\nListado de todas las unidades (orden descendente según superficie en m2): ")
+        for i in range(len(numero_unidades)):
+            print(f"Número de unidad: {numero_unidades[i]} - Superficie: {superficie_unidades[i]}m2")
+            
         
     def main():
         print("\n- Sistema de Gestión de las Expensas del Edificio 'Albarellos' -")
         print("A continuación, vas a introducir uno por uno cada número de unidad en el edificio, junto con su superficie en m2:")
-        cargar_datos_edificio()
+        unidades, superficie, VALOR_EXPENSAS_M2 = cargar_datos_edificio() # 1
+        ordenar_listado() # 2
+        mostrar_listado_ordenado() # 3
+        informar_promedio_expensas(VALOR_EXPENSAS_M2) # 4
         
     
     if __name__ == "__main__":
