@@ -15,6 +15,7 @@ def Ejercicio1():
     
     def cargar_datos_alumnos(): # Cargar datos de los alumnos (legajos y notas)
         flag = True
+        sin_legajos = True
         matriz_alumnos = [
             [], # Fila de Legajos: matriz_alumnos[0]
             [] # Fila de Notas: matriz_alumnos[1]
@@ -22,6 +23,11 @@ def Ejercicio1():
 
         while flag == True:
             legajo_alumno = int(input("\n> (-1 para finalizar la carga de datos) Introducí el legajo de un alumno: "))
+            while legajo_alumno == -1 and sin_legajos == True:
+                legajo_alumno = int(input("\n> Por favor, ingresá al menos un legajo para ver el informe: "))
+                if legajo_alumno != -1:
+                    sin_legajos = False
+            sin_legajos = False
             if legajo_alumno == -1:
                 flag = False
             else:
@@ -95,7 +101,20 @@ def Ejercicio1():
         main()
 
 
+# EJERCICIO 2): 
+# Una Administradora de Consorcios necesita un sistema para poder gestionar el cobro de las expensas de un edificio de 20 unidades.
 
+# En dos listas almacena la siguiente información:
+# • Número de unidad y superficie en metros cuadrados.
+# Validar que no se ingresen números de unidades duplicadas. Cada unidad paga de expensas un valor fijo por metro cuadrado, el que se ingresa por teclado.
+
+# Se pide:
+# • Informar el promedio de expensas del mes.
+# • Ordenar los listados de mayor a menor según la superficie.
+# • Mostrar por pantalla el listado ordenado informando el número de unidad y la superficie en metros cuadrados.
+
+def Ejercicio2():
+    pass
 
 
 
