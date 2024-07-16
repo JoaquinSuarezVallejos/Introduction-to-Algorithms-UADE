@@ -167,7 +167,7 @@ def Ejercicio2():
     
     def ordenar_listado():
         for i in range(len(superficie_unidades)): # Bubble Sort en orden descendente (de mayor a menor)
-            for j in range(0, len(superficie_unidades)-i-1):
+            for j in range(len(superficie_unidades)-i-1):
                 if superficie_unidades[j] < superficie_unidades[j+1]:
                     superficie_unidades[j], superficie_unidades[j+1] = superficie_unidades[j+1], superficie_unidades[j]
                     numero_unidades[j], numero_unidades[j+1] = numero_unidades[j+1], numero_unidades[j]
@@ -190,6 +190,13 @@ def Ejercicio2():
     
     if __name__ == "__main__":
         main()
+        
+        
+# EJERCICIO 3):
+# 
+
+def Ejercicio3():
+    pass
 
 
 ############################################################################################################
@@ -203,7 +210,7 @@ while xCheck == False:
     elif ejercicioSeleccionado == 2:
         Ejercicio2()
     elif ejercicioSeleccionado == 3:
-        pass
+        Ejercicio3()
     elif ejercicioSeleccionado == 4:
         pass
     elif ejercicioSeleccionado == 0:
