@@ -217,14 +217,33 @@ def Ejercicio3():
         while num < 0:
             num = int(input("\n> Por favor, ingresá un número válido: "))
     
-    def check_num_identificacion(num):
-        flag = True
-        while flag == True:
-            while num < 1:
-                num = int(input("\n> Por favor, ingresá un número válido: "))
+    def check_num_identificacion():
+        exit_flag = False
+        num_valido = True
+        num_duplicado = False
+        
+        while exit_flag == False:
+            num_duplicado = False
+            num_identificacion = int(input("> Número de identificación: "))
+            
+            while num_identificacion < 1:
+                num_valido = False
+                num_identificacion = int(input("\n> Por favor, ingresá un número válido: "))
+                
+                if num_identificacion >= 1:
+                    num_valido = True
+            
+            for i in range(len(identificaciones_ciclistas)):
+                if num_identificacion == identificaciones_ciclistas[i]:
+                    num_duplicado = True
+                    print("\n! Ingresaste un número de identificación duplicado por error, no se registró.")
+                
+            if num_valido == True and num_duplicado == False:
+                exit_flag = True
+        
+        return num_identificacion
             
         
-
     def cargar_datos_carrera():
         cantidad_ciclistas = int(input("\n> Para empezar, ingresá la cantidad de ciclistas que compiten en esta carrera: "))
         check_numero_natural1(cantidad_ciclistas)
@@ -233,8 +252,7 @@ def Ejercicio3():
         
         for i in range(cantidad_ciclistas):
             print(f"\nCiclista N°{i}: ")
-            numero_identificacion = int(input("> Número de identificación: "))
-            check_num_identificacion(numero_identificacion)
+            numero_identificacion = check_num_identificacion()
             
             print("Tiempo que tardó en llegar a la meta...")
             horas = int(input("> Horas: "))
