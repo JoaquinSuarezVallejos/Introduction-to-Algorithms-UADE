@@ -7,7 +7,7 @@
 # Se te solicita desarrollar un programa en Python para administrar la información de los aspirantes 
 # a una academia deportiva que ofrece cuatro disciplinas: fútbol, natación, voleibol y handball. El programa deberá realizar las siguientes tareas:
 
-# Generación de Datos: CHECK
+# Generación de Datos: 
 
 # Permitir al usuario ingresar la cantidad de aspirantes (entre 100 y 500). CHECK
 # Generar aleatoriamente los datos de cada aspirante, incluyendo: CHECK
@@ -25,7 +25,7 @@
 # Calcular e imprimir un resumen ordenado descendentemente por la cantidad de aspirantes en cada deporte, incluyendo: CHECK
 # Nombre del deporte. CHECK
 # Cantidad de aspirantes. CHECK
-# Promedio de edad de los aspirantes.
+# Promedio de edad de los aspirantes. CHECK
 
 
 # | IMPORTACIÓN |
@@ -67,9 +67,9 @@ def clasificar_aspirantes_por_deporte(): # Clasifica a cada aspirante según la 
             lista_futbol.append(DNIs_aspirantes[i])
         elif deportes_aspirantes[i] == 2: # Natación
             lista_natacion.append(DNIs_aspirantes[i])
-        elif deportes_aspirantes[i] == 3: # Handball
-            lista_natacion.append(DNIs_aspirantes[i])
-        else:
+        elif deportes_aspirantes[i] == 3: # Voleibol
+            lista_voleibol.append(DNIs_aspirantes[i])
+        else: # Handball
             lista_handball.append(DNIs_aspirantes[i])
     return lista_futbol, lista_natacion, lista_voleibol, lista_handball
 
@@ -90,20 +90,21 @@ def generar_promedio_edad_por_deporte(): # Genera el promedio de edad de los asp
         else:
             suma_edades_handball += edades_aspirantes[i]
     
-    suma_edades_futbol 
-            
+    edad_promedio_futbol = suma_edades_futbol / len(lista_futbol)
+    edad_promedio_natacion = suma_edades_natacion / len(lista_natacion)
+    edad_promedio_voleibol = suma_edades_voleibol / len(lista_voleibol)
+    edad_promedio_handball = suma_edades_handball / len(lista_handball)
+        
+    return edad_promedio_futbol, edad_promedio_natacion, edad_promedio_voleibol, edad_promedio_handball
     
 
-def generar_resumen_por_deporte(): # Genera un resumen ordenado de forma descendente por la cantidad de aspirantes en cada deporte
-    # Resumen por Deporte:
-
-    # Calcular e imprimir un resumen ordenado descendentemente (de mayor a menor) por la cantidad de aspirantes en cada deporte, incluyendo:
-    # Nombre del deporte.
-    # Cantidad de aspirantes.
-    # Promedio de edad de los aspirantes.
-    
+def generar_resumen_por_deporte(): # Genera un resumen ordenado de forma descendente por la cantidad de aspirantes en cada deporte y sus edades promedio
     lista_cant_aspirantes_x_deporte = []
-    lista_cant_aspirantes_x_deporte.append(len(lista_futbol), len(lista_natacion), len(lista_voleibol), len(lista_handball))
+    lista_cant_aspirantes_x_deporte.append(len(lista_futbol))
+    lista_cant_aspirantes_x_deporte.append(len(lista_natacion))
+    lista_cant_aspirantes_x_deporte.append(len(lista_voleibol))
+    lista_cant_aspirantes_x_deporte.append(len(lista_handball))
+    
     index_deportes = [1, 2, 3, 4]
     
     for i in range(len(lista_cant_aspirantes_x_deporte)): # Ordeno la lista de forma descendente (mayor a menor) con el método Bubble Sort
@@ -111,20 +112,20 @@ def generar_resumen_por_deporte(): # Genera un resumen ordenado de forma descend
             if lista_cant_aspirantes_x_deporte[j] < lista_cant_aspirantes_x_deporte[j+1]:
                 lista_cant_aspirantes_x_deporte[j], lista_cant_aspirantes_x_deporte[j+1] = lista_cant_aspirantes_x_deporte[j+1], lista_cant_aspirantes_x_deporte[j]
                 index_deportes[j], index_deportes[j+1] = index_deportes[j+1], index_deportes[j]
+                
+    edad_promedio_futbol, edad_promedio_natacion, edad_promedio_voleibol, edad_promedio_handball = generar_promedio_edad_por_deporte()
     
     print("\n| RESUMEN POR DEPORTE (orden descendente por cantidad de aspirantes) |")
     for i in range(4):
         if index_deportes[i] == 1:
-            print(f"• #1: La cantidad de aspirantes de la academia de fútbol es de {lista_cant_aspirantes_x_deporte[i]}.")
+            print(f"• #{i+1}: La cantidad de aspirantes de la academia de fútbol es de {lista_cant_aspirantes_x_deporte[i]}, y la edad promedio es de {edad_promedio_futbol}")
         elif index_deportes[i] == 2:
-            print(f"• #2: La cantidad de aspirantes de la academia de natación es de {lista_cant_aspirantes_x_deporte[i]}.")
+            print(f"• #{i+1}: La cantidad de aspirantes de la academia de natación es de {lista_cant_aspirantes_x_deporte[i]} y la edad promedio es de {edad_promedio_natacion}")
         elif index_deportes[i] == 3:
-            print(f"• #3: La cantidad de aspirantes de la academia de voleibol es de {lista_cant_aspirantes_x_deporte[i]}.")
+            print(f"• #{i+1}: La cantidad de aspirantes de la academia de voleibol es de {lista_cant_aspirantes_x_deporte[i]} y la edad promedio es de {edad_promedio_voleibol}")
         else:
-            print(f"• #4: La cantidad de aspirantes de la academia de handball es de {lista_cant_aspirantes_x_deporte[i]}.")
+            print(f"• #{i+1}: La cantidad de aspirantes de la academia de handball es de {lista_cant_aspirantes_x_deporte[i]} y la edad promedio es de {edad_promedio_handball}")
     
-    
-            
 
 def main(): # Función principal del programa
     print("- Bienvenido/a al Sistema de Gestión de Aspirantes de la Academia de Buenos Aires -")
@@ -147,6 +148,7 @@ def main(): # Función principal del programa
     print("\n| HANDBALL |")
     print(f"DNIs: {lista_handball}")
     
+    generar_resumen_por_deporte()
     
     
 # | MAIN |
