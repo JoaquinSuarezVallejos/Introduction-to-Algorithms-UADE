@@ -82,7 +82,7 @@ def ordenar_e_imprimir_lista_edades(lista_edades_aspirantes): # Ordenar e imprim
     print(f"{lista_ordenada_aspirantes}")
 
 
-def informar_edad_promedio(lista_edades_aspirantes): # Informar el promedio de edades que se inscribieron (con edades válidas)
+def informar_edad_promedio(lista_edades_aspirantes): # Informar e imprimir el promedio de edades que se inscribieron (con edades válidas)
     suma_edades = 0
     
     for i in range(len(lista_edades_aspirantes)):
@@ -95,7 +95,7 @@ def informar_edad_promedio(lista_edades_aspirantes): # Informar el promedio de e
     return edad_promedio
 
 
-def informar_encima_o_debajo_del_promedio(lista_edades_aspirantes, edad_promedio): # Informar cuántos aspirantes se encuentran por encima del promedio y cuántos por debajo
+def informar_encima_o_debajo_del_promedio(lista_edades_aspirantes, edad_promedio): # Informar e imprimir cuántos aspirantes se encuentran por encima del promedio y cuántos por debajo
     aspirantes_encima_promedio = 0
     aspirantes_debajo_promedio = 0
     
@@ -123,7 +123,7 @@ def main(): # Función principal
     print("\nIMPORTANTE: Las edades permitidas para las becas son de 13 a 80 años inclusive.")
     lista_edades_aspirantes, cant_aspirantes_validos, cant_aspirantes_invalidos = cargar_edades_aspirantes() # Punto 1
     
-    print("\n| INFORME COMPLETO |")
+    print("\n| INFORME COMPLETO |") # A partir de acá, se empieza a imprimir el informe completo con todos los puntos de la consigna incluidos
     imprimir_cantidades_aspirantes(cant_aspirantes_validos, cant_aspirantes_invalidos) # Punto 2 y 3
     imprimir_lista_edades(lista_edades_aspirantes) # Punto 4
     ordenar_e_imprimir_lista_edades(lista_edades_aspirantes) # Punto 4
