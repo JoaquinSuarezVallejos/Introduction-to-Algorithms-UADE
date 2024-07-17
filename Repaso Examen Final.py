@@ -248,10 +248,11 @@ def Ejercicio3():
         cantidad_ciclistas = int(input("\n> Para empezar, ingresá la cantidad de ciclistas que compiten en esta carrera: "))
         check_numero_natural1(cantidad_ciclistas)
         
-        print("\nA continuación, vas a introducir uno por uno el número de identificación de cada competidor y el tiempo que tardó en terminar la carrera en horas, minutos y segundos. ")
+        print("\nA continuación, vas a introducir uno por uno el número de identificación de cada competidor")
+        print("y el tiempo que tardó en terminar la carrera en horas, minutos y segundos. ")
         
         for i in range(cantidad_ciclistas):
-            print(f"\nCiclista N°{i}: ")
+            print(f"\nCiclista N°{i+1}: ")
             numero_identificacion = check_num_identificacion()
             
             print("Tiempo que tardó en llegar a la meta...")
@@ -268,19 +269,17 @@ def Ejercicio3():
             tiempo_horas.append(horas)
             tiempo_minutos.append(minutos)
             tiempo_segundos.append(segundos)
-            
-            
-            
-            
-        
-        
     
     
+    def mostrar_ganador_y_tiempo():
+        # • Mostrar el número del ganador de la carrera y el tiempo que empleó.
+        
+            
+            
     def main():
         print("\n- Bienvenido/a al Sistema del Gran Fondo de Argentina -")
+        cargar_datos_carrera()
         
-        
-
         
     if __name__ == "__main__":
         main()
