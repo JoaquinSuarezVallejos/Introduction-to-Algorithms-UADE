@@ -31,15 +31,47 @@ def cargar_edades_aspirantes():
     EDAD_MINIMA = 13
     EDAD_MAXIMA = 80
     lista_edades_aspirantes = []
+    cant_aspirantes_validos = 0
+    cant_aspirantes_invalidos = 0
     
     while exit_flag == False:
         edad_aspirante = int(input("\n> (Finalizar la carga de edades con '-1') Ingresá la edad de un aspirante: "))
-        if edad_aspirante == -1:
-            exit_flag = True
-        else:
-            while edad_aspirante < EDAD_MINIMA or edad_aspirante > EDAD_MAXIMA:
-                edad_aspirante = int(input("\n> Por favor, introducí una edad válida: "))
         
+        if edad_aspirante != -1:     
+            if edad_aspirante < EDAD_MINIMA or edad_aspirante > EDAD_MAXIMA:
+                print("\n- Lo sentimos, el aspirante está fuera del rango de edad, no fue registrado.")
+                cant_aspirantes_invalidos += 1
+            else:
+                cant_aspirantes_validos += 1
+                lista_edades_aspirantes.append(edad_aspirante)
+                print("- Aspirante registrado.")
+        elif edad_aspirante == -1:
+            exit_flag == True
+        else:
+            mostrar_error()
+            
+    return lista_edades_aspirantes, cant_aspirantes_validos, cant_aspirantes_invalidos
+
+
+def imprimir_lista_edades(lista_edades_aspirantes):
+    print("\nLa lista de las edades en el orden en que fueron cargadas es la siguiente: ")
+    print(f"{lista_edades_aspirantes}")
+
+
+def ordenar_e_imprimir_lista_edades(lista_edades_aspirantes): # Ordenar e imprimir la lista de menor a mayor (orden ascendente)
+    for i in range(len(lista_edades_aspirantes)): # Ordenar por el método Bubble Sort
+        for j in range(len(lista_edades_aspirantes)-i-1):
+            if lista_edades_aspirantes[j] > lista_edades_aspirantes[j+1]:
+                lista_edades_aspirantes[j], lista_edades_aspirantes[j+1] = lista_edades_aspirantes[j+1], lista_edades_aspirantes[j]
+    
+    
+    
+    
+
+
+def mostrar_error():
+    print("\n-! Ha ocurrido un error inesperado, el programa ha finalizado.")
+    exit()
 
 
 def main(): # Función principal
