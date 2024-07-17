@@ -290,7 +290,6 @@ def Ejercicio3():
             while segundos < 0 or segundos > 59:
                 informar_numero_invalido(segundos)
                 
-            # tiempo_segundos_ciclista = (horas * 3600) + (minutos * 60) + segundos
             tiempo_segundos_ciclista = convertir_tiempo_a_segundos(horas, minutos, segundos)
             
             identificaciones_ciclistas.append(numero_identificacion)
@@ -299,12 +298,21 @@ def Ejercicio3():
             tiempo_segundos.append(segundos)
             tiempo_total_segundos.append(tiempo_segundos_ciclista)
         
-            for i in range(len(tiempo_total_segundos)): # Ver quién es el ganador de la carrera
-                if tiempo_segundos_ciclista < tiempo_total_segundos[i]:
-                    identificacion_ganador = numero_identificacion
-                    tiempo_horas_ganador = tiempo_horas
-                    tiempo_minutos_ganador = tiempo_minutos
-                    tiempo_segundos_ganador = tiempo_segundos
+            # Inicializar variables para almacenar el tiempo mínimo y el ganador
+            tiempo_minimo = float('inf')
+            indice_ganador = 0
+
+            # Iterar sobre los tiempos totales y encontrar el mínimo
+            for i in range(len(tiempo_total_segundos)):
+                if tiempo_total_segundos[i] < tiempo_minimo:
+                    tiempo_minimo = tiempo_total_segundos[i]
+                    indice_ganador = i
+
+            # Obtener los datos del ganador usando el índice encontrado
+            identificacion_ganador = identificaciones_ciclistas[indice_ganador]
+            tiempo_horas_ganador = tiempo_horas[indice_ganador]
+            tiempo_minutos_ganador = tiempo_minutos[indice_ganador]
+            tiempo_segundos_ganador = tiempo_segundos[indice_ganador]
                 
         return identificaciones_ciclistas, tiempo_horas, tiempo_minutos, tiempo_segundos, identificacion_ganador, tiempo_horas_ganador, tiempo_minutos_ganador, tiempo_segundos_ganador
     
@@ -312,9 +320,7 @@ def Ejercicio3():
     def mostrar_ganador_tiempo_y_record(identificacion_ganador, tiempo_horas_ganador, tiempo_minutos_ganador, tiempo_segundos_ganador, horas_record, minutos_record, segundos_record):
         print(f"\n• El ganador es el ciclista N°{identificacion_ganador}, terminando la carrera en {tiempo_horas_ganador} hora/s, {tiempo_minutos_ganador} minuto/s y {tiempo_segundos_ganador} segundo/s.")
         
-        # tiempo_segundos_ganador = (tiempo_horas_ganador * 3600) + (tiempo_minutos_ganador * 60) + tiempo_segundos_ganador
         tiempo_segundos_ganador = convertir_tiempo_a_segundos(tiempo_horas_ganador, tiempo_minutos_ganador, tiempo_segundos_ganador)
-        # tiempo_segundos_record = (horas_record * 3600) + (minutos_record * 60) + segundos_record
         tiempo_segundos_record = convertir_tiempo_a_segundos(horas_record, minutos_record, segundos_record)
         if tiempo_segundos_ganador < tiempo_segundos_record:
             print(f"• El ganador de esta carrera batió el tiempo récord! ({horas_record} hora/s, {minutos_record} minuto/s y {segundos_record} segundo/s).")
@@ -323,15 +329,28 @@ def Ejercicio3():
     
     
     def calcular_tiempo_promedio_ciclistas():
-        # • Calcular y mostrar el tiempo promedio entre todos los ciclistas.
-        for 
+        suma_tiempo_segundos = 0
+        for i in range(len(tiempo_total_segundos)):
+            suma_tiempo_segundos += tiempo_total_segundos[i]
+        
+        promedio_segundos = suma_tiempo_segundos // len(tiempo_total_segundos)
+        
+        horas_promedio = promedio_segundos // 3600
+        minutos_promedio = (promedio_segundos % 3600) // 60
+        segundos_promedio = promedio_segundos % 60
+        
+        print(f"• El tiempo promedio que tardaron los ciclistas en llegar a la meta es de {horas_promedio} hora/s, {minutos_promedio} minuto/s y {segundos_promedio} segundo/s.")
         
             
     def main():
         print("\n- Bienvenido/a al Sistema del Gran Fondo de Argentina -")
-        cargar_datos_carrera()
+        identificaciones_ciclistas, tiempo_horas, tiempo_minutos, tiempo_segundos, identificacion_ganador, tiempo_horas_ganador, tiempo_minutos_ganador, tiempo_segundos_ganador = cargar_datos_carrera()
+        horas_record, minutos_record, segundos_record = cargar_tiempo_record_carrera()
+        print("\n- Informe del Gran Fondo de Argentina -")
+        mostrar_ganador_tiempo_y_record(identificacion_ganador, tiempo_horas_ganador, tiempo_minutos_ganador, tiempo_segundos_ganador, horas_record, minutos_record, segundos_record)
+        calcular_tiempo_promedio_ciclistas()
         
-        
+    
     if __name__ == "__main__":
         main()
 
