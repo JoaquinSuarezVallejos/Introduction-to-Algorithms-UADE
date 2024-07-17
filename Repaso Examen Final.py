@@ -193,10 +193,79 @@ def Ejercicio2():
         
         
 # EJERCICIO 3):
-# 
+# En una carrera de ciclistas participan N competidores, donde N se ingresa por teclado.
+# Desarrollar un programa que permita cargar, por cada competidor, su número de identificación y el tiempo que tardó en terminar 
+# la carrera en horas, minutos y segundos.
+# Luego se solicita:
+# • Mostrar el número del ganador de la carrera y el tiempo que empleó.
+# • Ingresando por teclado el tiempo récord registrado para dicha carrera, informar si el ganador batió el récord anterior.
+# • Calcular y mostrar el tiempo promedio entre todos los ciclistas.
+# Los ciclistas se identifican con números enteros, no necesariamente correlativos.
 
 def Ejercicio3():
-    pass
+    
+    identificaciones_ciclistas = []
+    tiempo_horas = []
+    tiempo_minutos = []
+    tiempo_segundos = []
+    
+    def check_numero_natural1(num):
+        while num < 1: 
+            num = int(input("\n> Por favor, ingresá un número válido: "))
+            
+    def check_numero_natural2(num):
+        while num < 0:
+            num = int(input("\n> Por favor, ingresá un número válido: "))
+    
+    def check_num_identificacion(num):
+        flag = True
+        while flag == True:
+            while num < 1:
+                num = int(input("\n> Por favor, ingresá un número válido: "))
+            
+        
+
+    def cargar_datos_carrera():
+        cantidad_ciclistas = int(input("\n> Para empezar, ingresá la cantidad de ciclistas que compiten en esta carrera: "))
+        check_numero_natural1(cantidad_ciclistas)
+        
+        print("\nA continuación, vas a introducir uno por uno el número de identificación de cada competidor y el tiempo que tardó en terminar la carrera en horas, minutos y segundos. ")
+        
+        for i in range(cantidad_ciclistas):
+            print(f"\nCiclista N°{i}: ")
+            numero_identificacion = int(input("> Número de identificación: "))
+            check_num_identificacion(numero_identificacion)
+            
+            print("Tiempo que tardó en llegar a la meta...")
+            horas = int(input("> Horas: "))
+            check_numero_natural2(horas)
+            
+            minutos = int(input("> Minutos: "))
+            check_numero_natural2(minutos)
+            
+            segundos = int(input("> Segundos: "))
+            check_numero_natural2(segundos)
+            
+            identificaciones_ciclistas.append(numero_identificacion)
+            tiempo_horas.append(horas)
+            tiempo_minutos.append(minutos)
+            tiempo_segundos.append(segundos)
+            
+            
+            
+            
+        
+        
+    
+    
+    def main():
+        print("\n- Bienvenido/a al Sistema del Gran Fondo de Argentina -")
+        
+        
+
+        
+    if __name__ == "__main__":
+        main()
 
 
 ############################################################################################################

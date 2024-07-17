@@ -54,7 +54,7 @@ PRECIOS_FOTOS_EVENTO = [ # Matriz: precios de fotos por tipo de evento.
     [1000, 900, 800] # OTROS
 ]
 
-eventos_del_mes = [] # Lista: eventos realizados en el mes
+eventos_del_mes = [] # Matriz: eventos realizados en el mes
 
 # Variables totales
 cantidad_eventos = 0
