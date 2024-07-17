@@ -208,15 +208,8 @@ def Ejercicio3():
     tiempo_horas = []
     tiempo_minutos = []
     tiempo_segundos = []
-    
-    def check_numero_natural1(num):
-        while num < 1: 
-            num = int(input("\n> Por favor, ingresá un número válido: "))
+    tiempo_total_segundos = []
             
-    def check_numero_natural2(num):
-        while num < 0:
-            num = int(input("\n> Por favor, ingresá un número válido: "))
-    
     def check_num_identificacion():
         exit_flag = False
         num_valido = True
@@ -228,7 +221,7 @@ def Ejercicio3():
             
             while num_identificacion < 1:
                 num_valido = False
-                num_identificacion = int(input("\n> Por favor, ingresá un número válido: "))
+                informar_numero_invalido(num_identificacion)
                 
                 if num_identificacion >= 1:
                     num_valido = True
@@ -242,11 +235,40 @@ def Ejercicio3():
                 exit_flag = True
         
         return num_identificacion
+    
+    
+    def informar_numero_invalido(var):
+        var = int(input("\n> Por favor, ingresá un número válido: "))
+        return var
             
+            
+    def cargar_tiempo_record_carrera():
+        print("\n> ¿Cuál es el tiempo récord registrado de esta carrera?")
         
+        horas_record = int(input("> Horas: "))
+        while horas_record < 0:
+            informar_numero_invalido(horas_record)
+                
+        minutos_record = int(input("> Minutos: "))
+        while minutos_record < 0 or minutos_record > 59:
+            informar_numero_invalido(minutos_record)
+        
+        segundos_record = int(input("> Segundos: "))
+        while segundos_record < 0 or segundos_record > 59:
+            informar_numero_invalido(segundos_record)
+            
+        return horas_record, minutos_record, segundos_record
+    
+    
+    def convertir_tiempo_a_segundos(horas, minutos, segundos):
+        tiempo_en_segundos = (horas * 3600) + (minutos * 60) + segundos
+        return tiempo_en_segundos
+        
+    
     def cargar_datos_carrera():
         cantidad_ciclistas = int(input("\n> Para empezar, ingresá la cantidad de ciclistas que compiten en esta carrera: "))
-        check_numero_natural1(cantidad_ciclistas)
+        while cantidad_ciclistas < 1: 
+            informar_numero_invalido(cantidad_ciclistas)
         
         print("\nA continuación, vas a introducir uno por uno el número de identificación de cada competidor")
         print("y el tiempo que tardó en terminar la carrera en horas, minutos y segundos. ")
@@ -257,24 +279,53 @@ def Ejercicio3():
             
             print("Tiempo que tardó en llegar a la meta...")
             horas = int(input("> Horas: "))
-            check_numero_natural2(horas)
+            while horas < 0:
+                informar_numero_invalido(horas)
             
             minutos = int(input("> Minutos: "))
-            check_numero_natural2(minutos)
+            while minutos < 0 or minutos > 59:
+                informar_numero_invalido(minutos)
             
             segundos = int(input("> Segundos: "))
-            check_numero_natural2(segundos)
+            while segundos < 0 or segundos > 59:
+                informar_numero_invalido(segundos)
+                
+            # tiempo_segundos_ciclista = (horas * 3600) + (minutos * 60) + segundos
+            tiempo_segundos_ciclista = convertir_tiempo_a_segundos(horas, minutos, segundos)
             
             identificaciones_ciclistas.append(numero_identificacion)
             tiempo_horas.append(horas)
             tiempo_minutos.append(minutos)
             tiempo_segundos.append(segundos)
-    
-    
-    def mostrar_ganador_y_tiempo():
-        # • Mostrar el número del ganador de la carrera y el tiempo que empleó.
+            tiempo_total_segundos.append(tiempo_segundos_ciclista)
         
-            
+            for i in range(len(tiempo_total_segundos)): # Ver quién es el ganador de la carrera
+                if tiempo_segundos_ciclista < tiempo_total_segundos[i]:
+                    identificacion_ganador = numero_identificacion
+                    tiempo_horas_ganador = tiempo_horas
+                    tiempo_minutos_ganador = tiempo_minutos
+                    tiempo_segundos_ganador = tiempo_segundos
+                
+        return identificaciones_ciclistas, tiempo_horas, tiempo_minutos, tiempo_segundos, identificacion_ganador, tiempo_horas_ganador, tiempo_minutos_ganador, tiempo_segundos_ganador
+    
+    
+    def mostrar_ganador_tiempo_y_record(identificacion_ganador, tiempo_horas_ganador, tiempo_minutos_ganador, tiempo_segundos_ganador, horas_record, minutos_record, segundos_record):
+        print(f"\n• El ganador es el ciclista N°{identificacion_ganador}, terminando la carrera en {tiempo_horas_ganador} hora/s, {tiempo_minutos_ganador} minuto/s y {tiempo_segundos_ganador} segundo/s.")
+        
+        # tiempo_segundos_ganador = (tiempo_horas_ganador * 3600) + (tiempo_minutos_ganador * 60) + tiempo_segundos_ganador
+        tiempo_segundos_ganador = convertir_tiempo_a_segundos(tiempo_horas_ganador, tiempo_minutos_ganador, tiempo_segundos_ganador)
+        # tiempo_segundos_record = (horas_record * 3600) + (minutos_record * 60) + segundos_record
+        tiempo_segundos_record = convertir_tiempo_a_segundos(horas_record, minutos_record, segundos_record)
+        if tiempo_segundos_ganador < tiempo_segundos_record:
+            print(f"• El ganador de esta carrera batió el tiempo récord! ({horas_record} hora/s, {minutos_record} minuto/s y {segundos_record} segundo/s).")
+        else:
+            print(f"• El ganador de esta carrera no batió el tiempo récord ({horas_record} hora/s, {minutos_record} minuto/s y {segundos_record} segundo/s).")
+    
+    
+    def calcular_tiempo_promedio_ciclistas():
+        # • Calcular y mostrar el tiempo promedio entre todos los ciclistas.
+        for 
+        
             
     def main():
         print("\n- Bienvenido/a al Sistema del Gran Fondo de Argentina -")
