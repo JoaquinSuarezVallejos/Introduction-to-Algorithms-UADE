@@ -46,15 +46,20 @@ def cargar_edades_aspirantes():
                 lista_edades_aspirantes.append(edad_aspirante)
                 print("- Aspirante registrado.")
         elif edad_aspirante == -1:
-            exit_flag == True
+            exit_flag = True
         else:
             mostrar_error()
             
     return lista_edades_aspirantes, cant_aspirantes_validos, cant_aspirantes_invalidos
 
 
+def imprimir_cantidades_aspirantes(cant_aspirantes_validos, cant_aspirantes_invalidos):
+    print(f"\n• La cantidad total de aspirantes válidos que decidieron inscribirse es de {cant_aspirantes_validos}.")
+    print(f"\n• Y la cantidad total de aspirantes inválidos que intentaron inscribirse es de {cant_aspirantes_invalidos}.")
+
+
 def imprimir_lista_edades(lista_edades_aspirantes):
-    print("\nLa lista de las edades en el orden en que fueron cargadas es la siguiente: ")
+    print("\n• La lista de las edades en el orden en que fueron cargadas es la siguiente: ")
     print(f"{lista_edades_aspirantes}")
 
 
@@ -63,20 +68,57 @@ def ordenar_e_imprimir_lista_edades(lista_edades_aspirantes): # Ordenar e imprim
         for j in range(len(lista_edades_aspirantes)-i-1):
             if lista_edades_aspirantes[j] > lista_edades_aspirantes[j+1]:
                 lista_edades_aspirantes[j], lista_edades_aspirantes[j+1] = lista_edades_aspirantes[j+1], lista_edades_aspirantes[j]
+                
+    lista_ordenada_aspirantes = lista_edades_aspirantes
     
+    print("\n• La lista de las edades en orden ascendente (de menor a mayor) es la siguiente: ")
+    print(f"{lista_ordenada_aspirantes}")
+
+
+def informar_edad_promedio(lista_edades_aspirantes): # Informar el promedio de edades que se inscribieron (con edades válidas)
+    suma_edades = 0
     
+    for i in range(len(lista_edades_aspirantes)):
+        suma_edades += lista_edades_aspirantes[i]
+        
+    edad_promedio = suma_edades / len(lista_edades_aspirantes)
     
+    print("\n• ")
     
+    return edad_promedio
+
+
+def informar_encima_o_debajo_del_promedio(lista_edades_aspirantes, edad_promedio): # Informar cuántos aspirantes se encuentran por encima del promedio y cuántos por debajo
+    edades_encima_promedio = 0
+    edades_debajo_promedio = 0
+    
+    for i in range(len(lista_edades_aspirantes)):
+        if lista_edades_aspirantes[i] > edad_promedio:
+            edades_encima_promedio += 1
+        elif lista_edades_aspirantes[i] < edad_promedio:
+            edades_debajo_promedio += 1
+        else:
+            mostrar_error()
+
+    return edades_encima_promedio, edades_debajo_promedio
 
 
 def mostrar_error():
     print("\n-! Ha ocurrido un error inesperado, el programa ha finalizado.")
     exit()
-
+    
 
 def main(): # Función principal
     print("\n- Bienvenido/a al Sistema del Programa de Becas del Club Buenos Aires -")
     print("\nIMPORTANTE: Las edades permitidas para las becas son de 13 a 80 años inclusive.")
+    lista_edades_aspirantes, cant_aspirantes_validos, cant_aspirantes_invalidos = cargar_edades_aspirantes() # Punto 1
+    
+    print("\n| INFORME COMPLETO |")
+    imprimir_cantidades_aspirantes(cant_aspirantes_validos, cant_aspirantes_invalidos) # Punto 2 y 3
+    imprimir_lista_edades(lista_edades_aspirantes) # Punto 4
+    ordenar_e_imprimir_lista_edades(lista_edades_aspirantes) # Punto 4
+    edad_promedio = informar_edad_promedio(lista_edades_aspirantes) # Punto 5
+    informar_encima_o_debajo_del_promedio(lista_edades_aspirantes, edad_promedio) # Punto 5
 
 
 # | MAIN |
