@@ -1,4 +1,4 @@
-# Introducción a la Algoritmia: Simulacro de Examen
+# Introducción a la Algoritmia: Simulacro de de Primer Parcial
 
 def Ejercicio1():
     print("\nEjercicio 1:")

@@ -1,4 +1,4 @@
-# Consigna del Examen Final de Programación en Python
+# Simulacro de Examen Final
 
 # Título: Gestión de Aspirantes en una Academia Deportiva Multidisciplinaria
 
